@@ -1,0 +1,86 @@
+workspace "Name" "Description" {
+
+    !identifiers hierarchical
+
+    model {
+        u = person "User"
+        aiapi = softwareSystem "ai api" {
+            tags "AiSystem"
+        }
+        ss = softwareSystem "Software System" {
+            wa = container "Web Application" {
+                tags "WebApp"
+            }
+            api = container "Api Gateway" {
+                tags "Gateway"
+            }
+            cre = container "creater"
+            aides = container "Ai descripper"
+            search = container "search Engine"
+            review = container "review hadler"
+            db = container "Database Schema" {
+                tags "Database"
+            }
+        }
+
+        u -> ss.wa "Uses"
+        ss.wa -> ss.api "Request"
+        ss.api -> ss.aides "sends descripe auto"
+        ss.api -> ss.cre "creater"
+        ss.api -> ss.review "sends review"
+        ss.review -> ss.db "saves review"
+        ss.cre -> ss.db "saves creation"
+        ss.api -> ss.search "searches"
+        ss.search -> ss.db "queary databse"
+        ss.aides -> aiapi
+    }
+
+    views {
+        systemContext ss "Diagram1" {
+            include *
+            autolayout lr
+        }
+
+        container ss "Diagram2" {
+            include *
+            autolayout lr
+        }
+
+        styles {
+            element "Element" {
+                color #ffffff
+            }
+            element "Gateway"{
+                background #b1e831
+                shape Hexagon
+            }
+            element "AiSystem" {
+                background #f0b60a
+                shape Hexagon
+            }
+            element "WebApp" {
+                background #eb3434
+                shape WebBrowser
+            }
+            element "Person" {
+                background #008000
+                shape person
+            }
+            element "Software System" {
+                background #d92389
+            }
+            element "Container" {
+                background #f8289c
+            }
+            element "Database" {
+                shape cylinder
+                background #0000FF
+            }
+        }
+    }
+
+    configuration {
+        scope softwaresystem
+    }
+
+}
