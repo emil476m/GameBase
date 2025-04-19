@@ -1,0 +1,12 @@
+services:
+  searchengine:
+    build:
+      context: .
+      dockerfile: Apps/SearchEngine/Dockerfile
+    ports:
+      - 8080:8080
+      - 8081:8081
+      - 8000:8000 #swagger port
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development #TODO Change away from development if this file is used for release
+      - ASPNETCORE_URLS=http://+:8000 #Ths allows us 4to use swagger On the API

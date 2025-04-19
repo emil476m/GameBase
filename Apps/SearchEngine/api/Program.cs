@@ -23,7 +23,7 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
-app.UseCors(policy =>
+app.UseCors(policy => //TODO Add a cors policy for linked page
     policy
         .AllowAnyOrigin()
         .AllowAnyMethod()
