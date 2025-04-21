@@ -1,5 +1,3 @@
-
-using System.Reflection.Metadata;
 using infrastructur.Interfaces;
 using infrastruvtur.Implementation;
 using service.Implementations;
@@ -7,7 +5,11 @@ using Service.Interfaces;
 
 var builder = WebApplication.CreateBuilder(args);
 
+builder.Services.AddNpgsqlDataSource(Environment.GetEnvironmentVariable("pgconn")!,
+    dataSourceBuilder => dataSourceBuilder.EnableParameterLogging());
+
 builder.Services.AddScoped<ISearchRepository<string, string>, SeartchRepositoryString>();
+
 builder.Services.AddScoped<IService<string, string>, ServiceString>();
 
 builder.Services.AddControllers();

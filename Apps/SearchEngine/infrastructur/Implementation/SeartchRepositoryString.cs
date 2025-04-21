@@ -1,11 +1,30 @@
-﻿using infrastructur.Interfaces;
+﻿using Dapper;
+using infrastructur.Interfaces;
+using Npgsql;
 
 namespace infrastruvtur.Implementation;
 
 public class SeartchRepositoryString: ISearchRepository<string,string>
 {
-    public Task<IEnumerable<string>> QuerySearch(string query)
+    
+    private NpgsqlDataSource _dataSource;
+    public SeartchRepositoryString(NpgsqlDataSource dataSource)
     {
-        throw new NotImplementedException();
+        _dataSource = dataSource;
+    }
+    
+    public async Task<IEnumerable<string>> QuerySearch(string searchQuery)
+    {
+        var sql = $@"
+                SELECT DISTINCT game_name FROM Game WHERE game_name ILIKE @query;
+                ";
+
+        using var conn = _dataSource.OpenConnection();
+        
+        var list = await conn.QueryAsync<string>(sql, new {
+            query = @$"%{searchQuery.Trim()}%"
+        });
+
+        return list;
     }
 }
