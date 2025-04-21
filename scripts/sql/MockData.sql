@@ -5,3 +5,6 @@ INSERT INTO Game (game_name, game_description, game_img_url) VALUES
 ('Mystic Forest', 'A magical adventure game set in an enchanted forest full of puzzles and mythical creatures.', 'https://example.com/images/mystic-forest.jpg'),
 ('Speed Rush', 'An arcade racing game with fast-paced tracks and customizable vehicles.', 'https://example.com/images/speed-rush.jpg'),
 ('Code Breaker', 'A logic-based puzzle game where players crack codes and unlock secrets.', NULL);  -- NULL url to test optional image
+
+-- Mocks game_score
+INSERT INTO GameScore (game_score, game_id) values (9.2,1),(6.5,2),(2.0,3),(5.5,4),(10.0,5);
