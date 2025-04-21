@@ -7,9 +7,9 @@ namespace api.controllers;
 [Route("[controller]")]
 public class SearcgEngineController : ControllerBase
 {
-    private readonly IService<string,string> _service;
+    private readonly IService<string> _service;
 
-    public SearcgEngineController(IService<string,string> service)
+    public SearcgEngineController(IService<string> service)
     {
         _service = service;
     }

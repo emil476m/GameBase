@@ -3,14 +3,14 @@ using Service.Interfaces;
 
 namespace service.Implementations;
 
-public class ServiceString : IService<string,string>
+public class ServiceString : IService<string>
 {
-    private readonly ISearchRepository<string,string> _searchRepository;
+    private readonly ISearchRepository<string> _searchRepository;
 
     /**
      * Basse Interface for strings
      */
-    public ServiceString(ISearchRepository<string,string> searchRepository)
+    public ServiceString(ISearchRepository<string> searchRepository)
     {
         _searchRepository = searchRepository;
     }

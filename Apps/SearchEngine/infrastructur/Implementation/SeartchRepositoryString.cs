@@ -4,7 +4,7 @@ using Npgsql;
 
 namespace infrastruvtur.Implementation;
 
-public class SeartchRepositoryString: ISearchRepository<string,string>
+public class SeartchRepositoryString: ISearchRepository<string>
 {
     
     private NpgsqlDataSource _dataSource;

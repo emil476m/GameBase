@@ -8,9 +8,9 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddNpgsqlDataSource(Environment.GetEnvironmentVariable("pgconn")!,
     dataSourceBuilder => dataSourceBuilder.EnableParameterLogging());
 
-builder.Services.AddScoped<ISearchRepository<string, string>, SeartchRepositoryString>();
+builder.Services.AddScoped<ISearchRepository<string>, SeartchRepositoryString>();
 
-builder.Services.AddScoped<IService<string, string>, ServiceString>();
+builder.Services.AddScoped<IService<string>, ServiceString>();
 
 builder.Services.AddControllers();
 
