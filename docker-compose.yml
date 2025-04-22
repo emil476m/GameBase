@@ -20,6 +20,14 @@ services:
     networks:
       - game_base_network
 
+  gateway:
+    build:
+      context: .
+      dockerfile: Apps/gateway/Dockerfile
+    ports:
+      - 8080:8080
+      - 8081:8081
+
   searchengine:
     build:
       context: .
@@ -34,6 +42,7 @@ services:
       - pgconn=Host=database;Database=GameBaseDb;User Id=postgres;Password=postgres;Port=5432 #Connection string for DB
     depends_on:
       - database
+      - gateway
     networks:
       - game_base_network
 

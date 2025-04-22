@@ -1,0 +1,16 @@
+﻿{
+  "Routes": [
+    {
+      "UpstreamHttpMethod": ["Get"],
+      "UpstreamPathTemplate": "/SearcgEngine",
+      "DownstreamPathTemplate": "/SearcgEngine",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "searchengine",
+          "Port": 8080
+        }
+      ]
+    }
+  ]
+}
