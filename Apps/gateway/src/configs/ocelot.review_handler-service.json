@@ -14,7 +14,7 @@
     },
     {
     "UpstreamHttpMethod": ["Post"],
-    "UpstreamPathTemplate": "/AddScore",
+    "UpstreamPathTemplate": "/Score",
     "DownstreamPathTemplate": "/Review",
     "DownstreamScheme": "http",
     "DownstreamHostAndPorts": [

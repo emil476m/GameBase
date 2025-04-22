@@ -19,7 +19,7 @@ public class RepositoryFloat : IRepository<float>
         using var conn = _dataSource.OpenConnection();
         
         var id = await conn.QuerySingleAsync<float>(sqlQuery, new {
-            id = $@"{gameId}"
+            id = gameId.ToString()
         });
 
         return id;
@@ -38,7 +38,7 @@ public class RepositoryFloat : IRepository<float>
         
         var rowsAffected = await conn.ExecuteAsync(sqlQuery, new {
             plusscore = addition,
-            id = $@"{gameId}"
+            id = gameId.ToString()
         });
 
         return rowsAffected > 0;
