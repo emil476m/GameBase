@@ -8,7 +8,7 @@ public static class GameMapper
     {
         return new GameDbModel
         {
-            Id = model.Id,
+            Id = model.Id.ToString(),
             Name = model.Name,
             Description = model.Description,
             ImgUrl = model.ImgUrl
@@ -19,7 +19,7 @@ public static class GameMapper
     {
         return new GameModel
         {
-            Id = model.Id,
+            Id = Guid.Parse(model.Id),
             Name = model.Name,
             Description = model.Description,
             ImgUrl = model.ImgUrl

@@ -24,7 +24,7 @@ public class CreateService : IService
         while (true)
         {
             var guid = Guid.NewGuid();
-            if (await _repository.CheckIfGuidExists(guid))
+            if (!await _repository.CheckIfGuidExists(guid))
             {
                 return guid;
             }

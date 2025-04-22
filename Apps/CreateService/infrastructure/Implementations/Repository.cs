@@ -20,7 +20,7 @@ public class Repository : IRepository
     {
         var dbGame = game.ToDbModel();
         var sql =
-            $@"INSERT INTO GameBaseDb.Game (game_id, game_name, game_description, game_img_url) 
+            $@"INSERT INTO Game (game_id, game_name, game_description, game_img_url) 
             VALUES(@GameId, @GameName, @GameDesc, @ImgUrl)
             RETURNING game_id as {nameof(GameDbModel.Id)},
             game_name as {nameof(GameDbModel.Name)},
@@ -28,43 +28,39 @@ public class Repository : IRepository
             game_img_url as {nameof(GameDbModel.ImgUrl)}
             ;";
 
-        using (var conn = await _dataSource.OpenConnectionAsync())
+        using var conn = _dataSource.OpenConnection();
+        try
         {
-            try
-            {
-                var result = await conn.QueryFirstAsync<GameDbModel>(sql, new {
-                    GameId = dbGame.Id,
-                    GameName = dbGame.Name, 
-                    GameDesc = dbGame.Description, 
-                    ImgUrl = dbGame.ImgUrl
-                });
+            var result = await conn.QueryFirstAsync<GameDbModel>(sql, new {
+                GameId = dbGame.Id,
+                GameName = dbGame.Name, 
+                GameDesc = dbGame.Description, 
+                ImgUrl = dbGame.ImgUrl
+            });
                 
-                return result.ToModel();
-            }
-            catch (Exception e)
-            {
-                throw new Exception("Could not create game");
-            }
+            return result.ToModel();
         }
+        catch (Exception e)
+        {
+            throw new Exception("Could not create game");
+        }
+            
+        
     }
 
     public async Task<bool> CheckIfGuidExists(Guid guid)
     {
-        var sql =
-            $@"SELECT game_id FROM GameBaseDb.Game WHERE game_id = @guid
-  
-            ;";
+        var sql = $@"SELECT game_id FROM Game WHERE game_id = @NewGuid;";
 
-        using (var conn = await _dataSource.OpenConnectionAsync())
+        using var conn = _dataSource.OpenConnection();
+        try
         {
-            try
-            {
-                return await conn.QueryFirstAsync<GameDbModel>(sql, new {guid}) != null;
-            }
-            catch (Exception e)
-            {
-                throw new Exception("Could not check guid");
-            }
+            var result = await conn.QueryFirstOrDefaultAsync<Guid>(sql, new { NewGuid = guid.ToString() });
+            return result != default;
+        }
+        catch (Exception e)
+        {
+            throw new Exception("Could not check guid");
         }
     }
 }
