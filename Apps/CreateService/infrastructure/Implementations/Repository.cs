@@ -20,12 +20,13 @@ public class Repository : IRepository
     {
         var dbGame = game.ToDbModel();
         var sql =
-            $@"INSERT INTO Game (game_id, game_name, game_description, game_img_url) 
-            VALUES(@GameId, @GameName, @GameDesc, @ImgUrl)
+            $@"INSERT INTO Game (game_id, game_name, game_description, game_img_url, game_published_year) 
+            VALUES(@GameId, @GameName, @GameDesc, @ImgUrl, @PublishedYear)
             RETURNING game_id as {nameof(GameDbModel.Id)},
             game_name as {nameof(GameDbModel.Name)},
             game_description as {nameof(GameDbModel.Description)},
-            game_img_url as {nameof(GameDbModel.ImgUrl)}
+            game_img_url as {nameof(GameDbModel.ImgUrl)},
+            game_published_year as {nameof(GameDbModel.PublishedYear)}
             ;";
 
         using var conn = _dataSource.OpenConnection();
@@ -35,7 +36,8 @@ public class Repository : IRepository
                 GameId = dbGame.Id,
                 GameName = dbGame.Name, 
                 GameDesc = dbGame.Description, 
-                ImgUrl = dbGame.ImgUrl
+                ImgUrl = dbGame.ImgUrl,
+                PublishedYear = dbGame.PublishedYear
             });
                 
             return result.ToModel();

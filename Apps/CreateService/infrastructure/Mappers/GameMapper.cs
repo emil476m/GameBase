@@ -11,7 +11,8 @@ public static class GameMapper
             Id = model.Id.ToString(),
             Name = model.Name,
             Description = model.Description,
-            ImgUrl = model.ImgUrl
+            ImgUrl = model.ImgUrl,
+            PublishedYear = model.PublishedYear
         };
     }
 
@@ -22,7 +23,8 @@ public static class GameMapper
             Id = Guid.Parse(model.Id),
             Name = model.Name,
             Description = model.Description,
-            ImgUrl = model.ImgUrl
+            ImgUrl = model.ImgUrl,
+            PublishedYear = model.PublishedYear
         };
     }
 }
