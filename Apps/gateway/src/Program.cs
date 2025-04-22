@@ -8,6 +8,8 @@ builder.Configuration
     .AddJsonFile("configs/ocelot.global.json", optional: false, reloadOnChange: true);
 builder.Configuration    
     .AddJsonFile("configs/ocelot.search_engine-service.json", optional: false, reloadOnChange: true); 
+builder.Configuration    
+    .AddJsonFile("configs/ocelot.search_engine-service.json", optional: false, reloadOnChange: true); 
     //Further services that should be added to gateway added here
     //builder.Configuration.AddJsonFile("configs/ocelot.<NameOfFile>.json", optional: false, reloadOnChange: true); 
 

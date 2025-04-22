@@ -1,0 +1,28 @@
+{
+  "Routes": [
+    {
+      "UpstreamHttpMethod": ["Get"],
+      "UpstreamPathTemplate": "/Score/{gameId}",
+      "DownstreamPathTemplate": "/Review/{gameId}",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "reviwewhandler",
+          "Port": 8000
+        }
+      ]
+    },
+    {
+    "UpstreamHttpMethod": ["Post"],
+    "UpstreamPathTemplate": "/AddScore",
+    "DownstreamPathTemplate": "/Review",
+    "DownstreamScheme": "http",
+    "DownstreamHostAndPorts": [
+      {
+        "Host": "reviwewhandler",
+        "Port": 8000
+      }
+    ]
+    }
+  ]
+}
