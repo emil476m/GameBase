@@ -1,4 +1,4 @@
--- Create Script V1.02
+-- Create Script V1.03
 
 CREATE TABLE IF NOT EXISTS Game (
     game_id             varchar(36)                             NOT NULL, -- Got to be generated in application layer. In case of auto generated there could be used UUID with an extension to postgres

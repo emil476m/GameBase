@@ -1,4 +1,4 @@
--- Mock data V1.02
+-- Mock data V1.03
 -- this is Example texting | Examples have been auto generated
 INSERT INTO Game (game_id, game_name, game_description, game_img_url, game_published_year) VALUES
 ('1a9d8a28-01f1-41ad-9c71-6a3a82e30c10', 'Pixel Quest', 'An 8-bit style platformer where you explore ancient ruins and collect hidden artifacts.', 'https://example.com/images/pixel-quest.jpg', '2002'),
