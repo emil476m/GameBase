@@ -5,11 +5,11 @@ namespace api.controllers;
 
 [ApiController]
 [Route("[controller]")]
-public class SearcgEngineController : ControllerBase
+public class SearchEngineController : ControllerBase
 {
     private readonly IService<string> _service;
 
-    public SearcgEngineController(IService<string> service)
+    public SearchEngineController(IService<string> service)
     {
         _service = service;
     }
