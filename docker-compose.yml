@@ -47,6 +47,22 @@ services:
       - gateway
     networks:
       - game_base_network
+        
+  createservice:
+    build:
+      context: .
+      dockerfile: Apps/CreateService/Dockerfile
+    ports:
+      - 6002:6000
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development   
+      - ASPNETCORE_URLS=http://+:6000
+      - pgconn=Host=database;Database=GameBaseDb;User Id=postgres;Password=postgres;Port=5432 #Connection string for DB
+    depends_on:
+      - database
+      - gateway
+    networks:
+      - game_base_network
 
   reviwewhandler:
     build:
