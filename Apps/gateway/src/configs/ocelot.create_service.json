@@ -1,0 +1,16 @@
+{
+  "Routes": [
+    {
+      "UpstreamHttpMethod": ["Post"],
+      "UpstreamPathTemplate": "/CreateGame",
+      "DownstreamPathTemplate": "/Create",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "createservice",
+          "Port": 6000
+        }
+      ]
+    }
+  ]
+}

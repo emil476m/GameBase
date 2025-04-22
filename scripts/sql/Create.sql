@@ -1,11 +1,11 @@
--- Create Script V1.01
+-- Create Script V1.02
 
 CREATE TABLE IF NOT EXISTS Game (
     game_id             varchar(36)                             NOT NULL, -- Got to be generated in application layer. In case of auto generated there could be used UUID with an extension to postgres
     game_name           VARCHAR(250)                            NOT NULL UNIQUE,
     game_description    VARCHAR(2400)                           NOT NULL,
     game_img_url        varchar(2048),
-
+    game_published_year varchar(6)                              NOT NULL,
     PRIMARY KEY (game_id)
 );
 
