@@ -4,7 +4,6 @@ namespace infrastructure.Models;
 
 public class GameModel
 {
-    [MaxLength(36)]
     public Guid Id { get; set; }
     
     [MaxLength(250)]
