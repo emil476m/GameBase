@@ -19,7 +19,7 @@ public class CreateController : ControllerBase
     [HttpPost]
     public async Task<IActionResult> CreateGame([FromBody] GameModel game)
     {
-        if (game.Name == null || game.Name == "") return BadRequest();
+        if (string.IsNullOrEmpty(game.Name) || string.IsNullOrEmpty(game.Description) || string.IsNullOrEmpty(game.PublishedYear)) return BadRequest();
         
         GameModel result = await _service.CreateGame(game);
 
