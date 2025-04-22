@@ -61,6 +61,7 @@ services:
       - pgconn=Host=database;Database=GameBaseDb;User Id=postgres;Password=postgres;Port=5432 #Connection string for DB
     depends_on:
       - database
+      - gateway
     networks:
       - game_base_network
 
