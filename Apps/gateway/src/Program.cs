@@ -3,8 +3,7 @@ using Ocelot.Middleware;
 
 var builder = WebApplication.CreateBuilder(args);
 
-//adds ocelot
-
+//ocelot
 builder.Configuration
     .AddJsonFile("configs/ocelot.global.json", optional: false, reloadOnChange: true);
 builder.Configuration    
@@ -12,7 +11,6 @@ builder.Configuration
     //Further services that should be added to gateway added here
     //builder.Configuration.AddJsonFile("configs/ocelot.<NameOfFile>.json", optional: false, reloadOnChange: true); 
 
-//builder.Configuration.AddJsonFile("ocelot.json", true, true);
 builder.Services.AddOcelot(builder.Configuration);
 
 
