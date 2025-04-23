@@ -1,5 +1,68 @@
 ﻿{
   "GlobalConfiguration": {
     "BaseUrl": "http://localhost:8080"
-  }
+  },
+  "Routes":
+  [
+    {
+      "UpstreamHttpMethod": ["Get"],
+      "UpstreamPathTemplate": "/Search",
+      "DownstreamPathTemplate": "/SearchEngine",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "searchengine",
+          "Port": 8000
+        }
+      ]
+    },
+    {
+      "UpstreamHttpMethod": ["get"],
+      "UpstreamPathTemplate": "/test",
+      "DownstreamPathTemplate": "/test",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "reviwewhandler",
+          "Port": 8000
+        }
+      ]
+    },
+    {
+      "UpstreamHttpMethod": ["Post"],
+      "UpstreamPathTemplate": "/Review",
+      "DownstreamPathTemplate": "/Review",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "reviwewhandler",
+          "Port": 8000
+        }
+      ]
+    },
+    {
+      "UpstreamHttpMethod": ["Get"],
+      "UpstreamPathTemplate": "/Review/{gameId}",
+      "DownstreamPathTemplate": "/Review/{gameId}",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "reviwewhandler",
+          "Port": 8000
+        }
+      ]
+    },
+    {
+      "UpstreamHttpMethod": ["Post"],
+      "UpstreamPathTemplate": "/CreateGame",
+      "DownstreamPathTemplate": "/Create",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "createservice",
+          "Port": 6000
+        }
+      ]
+    }
+  ]
 }
