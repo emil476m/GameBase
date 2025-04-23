@@ -5,9 +5,7 @@ var builder = WebApplication.CreateBuilder(args);
 
 //ocelot
 builder.Configuration
-    .AddJsonFile("configs/ocelot.global.json", optional: false, reloadOnChange: true);
-    //Further services that should be added to gateway added here
-    //builder.Configuration.AddJsonFile("configs/ocelot.<NameOfFile>.json", optional: false, reloadOnChange: true); 
+    .AddJsonFile("configuration/ocelot.global.json", optional: false, reloadOnChange: true);
 
 builder.Services.AddOcelot(builder.Configuration);
 

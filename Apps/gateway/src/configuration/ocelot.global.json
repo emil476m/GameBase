@@ -17,20 +17,8 @@
       ]
     },
     {
-      "UpstreamHttpMethod": ["get"],
-      "UpstreamPathTemplate": "/test",
-      "DownstreamPathTemplate": "/test",
-      "DownstreamScheme": "http",
-      "DownstreamHostAndPorts": [
-        {
-          "Host": "reviwewhandler",
-          "Port": 8000
-        }
-      ]
-    },
-    {
       "UpstreamHttpMethod": ["Post"],
-      "UpstreamPathTemplate": "/Review",
+      "UpstreamPathTemplate": "/ReviewScore",
       "DownstreamPathTemplate": "/Review",
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
@@ -42,7 +30,7 @@
     },
     {
       "UpstreamHttpMethod": ["Get"],
-      "UpstreamPathTemplate": "/Review/{gameId}",
+      "UpstreamPathTemplate": "/ReviewScore/{gameId}",
       "DownstreamPathTemplate": "/Review/{gameId}",
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
