@@ -64,7 +64,7 @@ services:
     networks:
       - game_base_network
 
-  reviwewhandler:
+  reviewhandler:
     build:
       context: .
       dockerfile: Apps/reviewHandler/Dockerfile

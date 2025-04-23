@@ -23,7 +23,7 @@
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
-          "Host": "reviwewhandler",
+          "Host": "reviewhandler",
           "Port": 8000
         }
       ]
@@ -35,7 +35,7 @@
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
-          "Host": "reviwewhandler",
+          "Host": "reviewhandler",
           "Port": 8000
         }
       ]
