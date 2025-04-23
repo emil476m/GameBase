@@ -3,7 +3,7 @@ services:
     image: postgres
     command: -c 'max_connections=100'
     ports:
-      - "5001:5432"
+      - 5001:5432
     restart: always
     volumes:
       - pgdatagamebase:/var/lib/postgresql/data
@@ -29,7 +29,6 @@ services:
       - 8081:8081
     networks:
       - game_base_network
-
 
   searchengine:
     build:
@@ -58,6 +57,24 @@ services:
     environment:
       - ASPNETCORE_ENVIRONMENT=Development   
       - ASPNETCORE_URLS=http://+:6000
+      - pgconn=Host=database;Database=GameBaseDb;User Id=postgres;Password=postgres;Port=5432 #Connection string for DB
+    depends_on:
+      - database
+      - gateway
+    networks:
+      - game_base_network
+
+  reviewhandler:
+    build:
+      context: .
+      dockerfile: Apps/reviewHandler/Dockerfile
+    ports:
+      - 7080:8080
+      - 7081:8081
+      - 7000:8000 #swagger port
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development #TODO Change away from development if this file is used for release
+      - ASPNETCORE_URLS=http://+:8000 #Ths allows us 4to use swagger On the API
       - pgconn=Host=database;Database=GameBaseDb;User Id=postgres;Password=postgres;Port=5432 #Connection string for DB
     depends_on:
       - database
