@@ -1,5 +1,6 @@
 using infrastructur.Interfaces;
 using infrastruvtur.Implementation;
+using infrastruvtur.Models.externals;
 using service.Implementations;
 using Service.Interfaces;
 
@@ -8,9 +9,9 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddNpgsqlDataSource(Environment.GetEnvironmentVariable("pgconn")!,
     dataSourceBuilder => dataSourceBuilder.EnableParameterLogging());
 
-builder.Services.AddScoped<ISearchRepository<string>, SeartchRepositoryString>();
+builder.Services.AddScoped<ISearchRepository<SearchDto, GameDto>, SearchRepositorySearchDto>();
 
-builder.Services.AddScoped<IService<string>, ServiceString>();
+builder.Services.AddScoped<IService<SearchDto, GameDto>, ServiceSearchDto>();
 
 builder.Services.AddControllers();
 
