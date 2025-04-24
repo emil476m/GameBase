@@ -17,6 +17,30 @@
       ]
     },
     {
+      "UpstreamHttpMethod": ["Get"],
+      "UpstreamPathTemplate": "/Game/{GameId}",
+      "DownstreamPathTemplate": "/SearchEngine/Game/{GameId}",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "searchengine",
+          "Port": 8000
+        }
+      ]
+    },
+    {
+      "UpstreamHttpMethod": ["Get"],
+      "UpstreamPathTemplate": "/Games",
+      "DownstreamPathTemplate": "/SearchEngine/Games",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "searchengine",
+          "Port": 8000
+        }
+      ]
+    },
+    {
       "UpstreamHttpMethod": ["Post"],
       "UpstreamPathTemplate": "/ReviewScore",
       "DownstreamPathTemplate": "/Review",
