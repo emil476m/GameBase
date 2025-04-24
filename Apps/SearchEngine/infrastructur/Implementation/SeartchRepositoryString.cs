@@ -4,7 +4,7 @@ using Npgsql;
 
 namespace infrastruvtur.Implementation;
 
-public class SeartchRepositoryString: ISearchRepository<string>
+public class SeartchRepositoryString: ISearchRepository<string, string>
 {
     
     private NpgsqlDataSource _dataSource;
@@ -26,5 +26,15 @@ public class SeartchRepositoryString: ISearchRepository<string>
         });
 
         return list;
+    }
+
+    public Task<IEnumerable<string>> getGames()
+    {
+        throw new NotImplementedException();
+    }
+
+    public Task<string> getGame(Guid gameId)
+    {
+        throw new NotImplementedException();
     }
 }
