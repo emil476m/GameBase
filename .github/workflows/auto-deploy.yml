@@ -2,7 +2,7 @@ name: auto-deploy-docker-images
 on:
   push:
     branches:
-      - feat/deploy
+      - main
 
 jobs:
   delivery:
