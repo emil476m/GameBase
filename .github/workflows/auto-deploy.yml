@@ -27,6 +27,7 @@ jobs:
       #  run: |
        #   docker build \
       #      -t ghcr.io/emil476m/gamebase-web:staging \
+      #      -t ghcr.io/emil476m/gamebase-web:${{ needs.integration.outputs.semver }} \
        #     -f ./Apps/frontend/Dockerfile \
      #       .
       #    docker push ghcr.io/emil476m/gamebase-web --all-tags
@@ -36,6 +37,7 @@ jobs:
         run: |
           docker build \
             -t ghcr.io/emil476m/gamebase-gw:staging \
+            -t ghcr.io/emil476m/gamebase-gw:${{ needs.integration.outputs.semver }} \
             -f ./Apps/gateway/Dockerfile \
             .
           docker push ghcr.io/emil476m/gamebase-gw --all-tags
@@ -45,6 +47,7 @@ jobs:
         run: |
           docker build \
             -t ghcr.io/emil476m/gamebase-cs:staging \
+            -t ghcr.io/emil476m/gamebase-cs:${{ needs.integration.outputs.semver }} \
             -f ./Apps/CreateService/Dockerfile \
             .
           docker push ghcr.io/emil476m/gamebase-cs --all-tags
@@ -54,6 +57,7 @@ jobs:
         run: |
           docker build \
             -t ghcr.io/emil476m/gamebase-se:staging \
+            -t ghcr.io/emil476m/gamebase-se:${{ needs.integration.outputs.semver }} \
             -f ./Apps/SearchEngine/Dockerfile \
             .
           docker push ghcr.io/emil476m/gamebase-se --all-tags
@@ -64,6 +68,7 @@ jobs:
         run: |
           docker build \
             -t ghcr.io/emil476m/gamebase-rh:staging \
+            -t ghcr.io/emil476m/gamebase-rh:${{ needs.integration.outputs.semver }} \
             -f ./Apps/reviewHandler/Dockerfile \
             .
           docker push ghcr.io/emil476m/gamebase-rh --all-tags
