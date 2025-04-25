@@ -4,6 +4,10 @@ on:
     branches:
       - gb/feature/autodeployment
 
+permissions:
+  contents: read
+  packages: write
+
 jobs:
   delivery:
     runs-on: ubuntu-latest
