@@ -4,10 +4,6 @@ on:
     branches:
       - gb/feature/autodeployment
 
-permissions:
-  contents: read
-  packages: write
-
 jobs:
   delivery:
     runs-on: ubuntu-latest
@@ -24,7 +20,7 @@ jobs:
         with:
           registry: ghcr.io
           username: ${{ github.actor }}
-          password: ${{ secrets.GITHUB_TOKEN }}
+          password: ${{ secrets.BD_LIZARD }}
 
       # Build the Docker image for frontend
      # - name: Build and Push Docker image (web)
