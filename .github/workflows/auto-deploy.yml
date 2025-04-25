@@ -26,52 +26,52 @@ jobs:
      # - name: Build and Push Docker image (web)
       #  run: |
        #   docker build \
-      #      -t ghcr.io/emil476m/GameBase-web:staging \
-       #     -t ghcr.io/emil476m/GameBase-web:${{ needs.integration.outputs.semver }} \
+      #      -t ghcr.io/emil476m/gamebase-web:staging \
+       #     -t ghcr.io/emil476m/gamebase-web:${{ needs.integration.outputs.semver }} \
        #     -f ./Apps/frontend/Dockerfile \
      #       .
-      #    docker push ghcr.io/emil476m/GameBase-web --all-tags
+      #    docker push ghcr.io/emil476m/gamebase-web --all-tags
 
       # Build the Docker image for gateway
       - name: Build and Push Docker image (gateway)
         run: |
           docker build \
-            -t ghcr.io/emil476m/GameBase-gw:staging \
-            -t ghcr.io/emil476m/GameBase-gw:${{ needs.integration.outputs.semver }} \
+            -t ghcr.io/emil476m/gamebase-gw:staging \
+            -t ghcr.io/emil476m/gamebase-gw:${{ needs.integration.outputs.semver }} \
             -f ./Apps/gateway/Dockerfile \
             .
-          docker push ghcr.io/emil476m/GameBase-gw --all-tags
+          docker push ghcr.io/emil476m/gamebase-gw --all-tags
 
       # Build the Docker image for CreateService
       - name: Build and Push Docker image (CreateService)
         run: |
           docker build \
-            -t ghcr.io/emil476m/GameBase-cs:staging \
-            -t ghcr.io/emil476m/GameBase-cs:${{ needs.integration.outputs.semver }} \
+            -t ghcr.io/emil476m/gamebase-cs:staging \
+            -t ghcr.io/emil476m/gamebase-cs:${{ needs.integration.outputs.semver }} \
             -f ./Apps/CreateService/Dockerfile \
             .
-          docker push ghcr.io/emil476m/GameBase-cs --all-tags
+          docker push ghcr.io/emil476m/gamebase-cs --all-tags
 
       # Build the Docker image for SearchEngine
       - name: Build and Push Docker image (SearchEngine)
         run: |
           docker build \
-            -t ghcr.io/emil476m/GameBase-se:staging \
-            -t ghcr.io/emil476m/GameBase-se:${{ needs.integration.outputs.semver }} \
+            -t ghcr.io/emil476m/gamebase-se:staging \
+            -t ghcr.io/emil476m/gamebase-se:${{ needs.integration.outputs.semver }} \
             -f ./Apps/SearchEngine/Dockerfile \
             .
-          docker push ghcr.io/emil476m/GameBase-se --all-tags
+          docker push ghcr.io/emil476m/gamebase-se --all-tags
 
 
       # Build the Docker image for reviewHandler
       - name: Build and Push Docker image (reviewHandler)
         run: |
           docker build \
-            -t ghcr.io/emil476m/GameBase-rh:staging \
-            -t ghcr.io/emil476m/GameBase-rh:${{ needs.integration.outputs.semver }} \
+            -t ghcr.io/emil476m/gamebase-rh:staging \
+            -t ghcr.io/emil476m/gamebase-rh:${{ needs.integration.outputs.semver }} \
             -f ./Apps/reviewHandler/Dockerfile \
             .
-          docker push ghcr.io/emil476m/GameBase-rh --all-tags
+          docker push ghcr.io/emil476m/gamebase-rh --all-tags
 
           
    
