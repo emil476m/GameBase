@@ -1,0 +1,75 @@
+name: auto-deploy-docker-images
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  delivery:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      packages: write
+      attestations: write
+      id-token: write
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0 # Fetch all history for accurate results of code analysis
+          
+      # Log in to GitHub Container Registry (GHCR)
+      - name: Log in to GHCR
+        uses: docker/login-action@v2
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
+      # Build the Docker image for frontend
+     # - name: Build and Push Docker image (web)
+      #  run: |
+       #   docker build \
+      #      -t ghcr.io/emil476m/gamebase-web:staging \
+      #      -t ghcr.io/emil476m/gamebase-web:${{ needs.integration.outputs.semver }} \
+       #     -f ./Apps/frontend/Dockerfile \
+     #       .
+      #    docker push ghcr.io/emil476m/gamebase-web --all-tags
+
+      # Build the Docker image for gateway
+      - name: Build and Push Docker image (gateway)
+        run: |
+          docker build \
+            -t ghcr.io/emil476m/gamebase-gw:version-0 \
+            -f ./Apps/gateway/Dockerfile \
+            .
+          docker push ghcr.io/emil476m/gamebase-gw --all-tags
+
+      # Build the Docker image for CreateService
+      - name: Build and Push Docker image (CreateService)
+        run: |
+          docker build \
+            -t ghcr.io/emil476m/gamebase-cs:version-0 \
+            -f ./Apps/CreateService/Dockerfile \
+            .
+          docker push ghcr.io/emil476m/gamebase-cs --all-tags
+
+      # Build the Docker image for SearchEngine
+      - name: Build and Push Docker image (SearchEngine)
+        run: |
+          docker build \
+            -t ghcr.io/emil476m/gamebase-se:version-0 \
+            -f ./Apps/SearchEngine/Dockerfile \
+            .
+          docker push ghcr.io/emil476m/gamebase-se --all-tags
+
+
+      # Build the Docker image for reviewHandler
+      - name: Build and Push Docker image (reviewHandler)
+        run: |
+          docker build \
+            -t ghcr.io/emil476m/gamebase-rh:version-0 \
+            -f ./Apps/reviewHandler/Dockerfile \
+            .
+          docker push ghcr.io/emil476m/gamebase-rh --all-tags
