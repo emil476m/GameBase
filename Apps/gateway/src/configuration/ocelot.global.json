@@ -79,15 +79,14 @@
     {
       "UpstreamHttpMethod": ["Post"],
       "UpstreamPathTemplate": "/CreateAIDescription",
-      "DownstreamPathTemplate": "/Create",
+      "DownstreamPathTemplate": "/api/AIDescription",
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
-          "Host": "createservice",
-          "Port": 6000
+          "Host": "aidescriptionservice",
+          "Port": 5000
         }
       ]
-    },
     }
   ]
 }

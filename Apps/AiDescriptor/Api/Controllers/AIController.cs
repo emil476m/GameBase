@@ -14,7 +14,7 @@ public class AIController : ControllerBase
     }
     
     [HttpPost]
-    [Route("api/AIDescription")]
+    [Route("/api/AIDescription")]
     public async Task<IActionResult> AI([FromBody] QueryDto query)
     {
         var response = await _aiService.getRespons(query.Query);
