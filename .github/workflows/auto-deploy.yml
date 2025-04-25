@@ -7,6 +7,9 @@ on:
 jobs:
   delivery:
     runs-on: ubuntu-latest
+    permissions:
+      packages: write
+      contents: read
     
     steps:
       - name: Checkout code
@@ -36,8 +39,7 @@ jobs:
       - name: Build and Push Docker image (gateway)
         run: |
           docker build \
-            -t ghcr.io/emil476m/gamebase-gw:staging \
-            -t ghcr.io/emil476m/gamebase-gw:${{ needs.integration.outputs.semver }} \
+            -t ghcr.io/emil476m/gamebase-gw:version-0 \
             -f ./Apps/gateway/Dockerfile \
             .
           docker push ghcr.io/emil476m/gamebase-gw --all-tags
@@ -46,8 +48,7 @@ jobs:
       - name: Build and Push Docker image (CreateService)
         run: |
           docker build \
-            -t ghcr.io/emil476m/gamebase-cs:staging \
-            -t ghcr.io/emil476m/gamebase-cs:${{ needs.integration.outputs.semver }} \
+            -t ghcr.io/emil476m/gamebase-cs:version-0 \
             -f ./Apps/CreateService/Dockerfile \
             .
           docker push ghcr.io/emil476m/gamebase-cs --all-tags
@@ -56,8 +57,7 @@ jobs:
       - name: Build and Push Docker image (SearchEngine)
         run: |
           docker build \
-            -t ghcr.io/emil476m/gamebase-se:staging \
-            -t ghcr.io/emil476m/gamebase-se:${{ needs.integration.outputs.semver }} \
+            -t ghcr.io/emil476m/gamebase-se:version-0 \
             -f ./Apps/SearchEngine/Dockerfile \
             .
           docker push ghcr.io/emil476m/gamebase-se --all-tags
@@ -67,8 +67,7 @@ jobs:
       - name: Build and Push Docker image (reviewHandler)
         run: |
           docker build \
-            -t ghcr.io/emil476m/gamebase-rh:staging \
-            -t ghcr.io/emil476m/gamebase-rh:${{ needs.integration.outputs.semver }} \
+            -t ghcr.io/emil476m/gamebase-rh:version-0 \
             -f ./Apps/reviewHandler/Dockerfile \
             .
           docker push ghcr.io/emil476m/gamebase-rh --all-tags
