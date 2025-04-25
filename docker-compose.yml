@@ -87,4 +87,4 @@ volumes:
 
 networks:
   game_base_network:
-    driver: bridged
+    driver: bridge
