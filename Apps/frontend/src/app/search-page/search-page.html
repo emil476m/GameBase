@@ -1,0 +1,19 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title mode="ios">
+      Search
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+<ion-searchbar placeholder="search for games here" (ionChange)="search()"></ion-searchbar>
+<ion-content>
+  <ion-infinite-scroll>
+ <ion-card *ngFor="let game of gamelist">
+   <ion-card-content>
+     <ion-title>
+       {{game}} <!-- > make this only be the game title </!-->
+     </ion-title>
+   </ion-card-content>
+ </ion-card>
+  </ion-infinite-scroll>
+</ion-content>

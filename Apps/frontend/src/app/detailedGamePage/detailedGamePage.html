@@ -1,0 +1,46 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title mode="ios">
+      Game
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+<ion-content>
+  <ion-infinite-scroll>
+    <ion-card>
+      <ion-card-content>
+        <div style="display: flex; flex-flow: wrap; flex-direction: row">
+          <ion-img src="https://preview.redd.it/new-game-cover-from-larians-website-v0-m2lmw222h0ka1.png?auto=webp&s=ba904ad42906960a96a70ce1c27ee6d3ff5edead" style="height: 25%; width: 20%"></ion-img>
+          <ion-grid>
+            <ion-row>
+              <ion-col>
+                <ion-title>Description</ion-title>
+                <ion-title style="font-weight: normal; font-size: 12px">game description</ion-title>
+              </ion-col>
+            </ion-row>
+            <ion-row>
+              <ion-col>
+                <ion-title style="font-weight: normal; font-size: 12px">Release year: 2019</ion-title>
+              </ion-col>
+            </ion-row>
+          </ion-grid>
+          <ion-text style="margin: 1%; align-self: center">rating: 10 <ion-icon name="game-controller"></ion-icon></ion-text>
+        </div>
+        <ion-card style="width: 20%">
+          <ion-card-content>
+            <ion-buttons slot="end">
+              <ion-select label="Rating: " labelPlacement="floating" placeholder="enter rating">
+                <ion-select label="Release year:" labelPlacement="flaoting" placeholder="year" [formControl]="ratingcontrol">
+                  <ion-select-option *ngFor="let year of ratinglist">{{year}}</ion-select-option>
+                </ion-select>
+              </ion-select>
+            </ion-buttons>
+            <ion-button [disabled]="ratingcontrol.invalid">
+              Add rating
+            </ion-button>
+          </ion-card-content>
+        </ion-card>
+      </ion-card-content>
+    </ion-card>
+  </ion-infinite-scroll>
+</ion-content>

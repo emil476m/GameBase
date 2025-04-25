@@ -82,9 +82,18 @@ services:
     networks:
       - game_base_network
 
+  gamebasefrontend:
+    build:
+      context: ./Apps/frontend
+      dockerfile: Dockerfile
+    ports:
+      - 80:4200
+    networks:
+      - game_base_network
+
 volumes:
   pgdatagamebase:
 
 networks:
   game_base_network:
-    external: true
+    driver: bridge
