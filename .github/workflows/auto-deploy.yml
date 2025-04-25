@@ -20,7 +20,7 @@ jobs:
         with:
           registry: ghcr.io
           username: ${{ github.actor }}
-          password: ${{ secrets.BD_LIZARD }}
+          password: ${{ secrets.GITHUB_TOKEN }}
 
       # Build the Docker image for frontend
      # - name: Build and Push Docker image (web)
