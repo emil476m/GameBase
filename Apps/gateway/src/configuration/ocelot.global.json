@@ -75,6 +75,19 @@
           "Port": 6000
         }
       ]
+    },
+    {
+      "UpstreamHttpMethod": ["Post"],
+      "UpstreamPathTemplate": "/CreateAIDescription",
+      "DownstreamPathTemplate": "/Create",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "createservice",
+          "Port": 6000
+        }
+      ]
+    },
     }
   ]
 }
