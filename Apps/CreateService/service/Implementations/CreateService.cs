@@ -13,9 +13,15 @@ public class CreateService : IService
         _repository = repository;
     }
     
-    public Task<GameModel> CreateGame(GameModel game)
+    public Task<GameModel> CreateGame(GameCreateModelDto gamedto)
     {
-        game.Id = CreateGuid().Result;
+        GameModel game = new GameModel
+        {
+            Id = CreateGuid().Result,
+            Name = gamedto.Name,
+            Description = gamedto.Description,
+            PublishedYear = gamedto.PublishedYear,
+        };
         return _repository.CreateGame(game);
     }
 

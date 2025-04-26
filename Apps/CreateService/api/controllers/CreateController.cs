@@ -17,7 +17,7 @@ public class CreateController : ControllerBase
     }
     
     [HttpPost]
-    public async Task<IActionResult> CreateGame([FromBody] GameModel game)
+    public async Task<IActionResult> CreateGame([FromBody] GameCreateModelDto game)
     {
         if (string.IsNullOrEmpty(game.Name) || string.IsNullOrEmpty(game.Description) || string.IsNullOrEmpty(game.PublishedYear)) return BadRequest();
         

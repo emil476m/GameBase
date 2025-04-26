@@ -4,5 +4,5 @@ namespace service.Interfaces;
 
 public interface IService
 {
-    Task<GameModel> CreateGame(GameModel game);
+    Task<GameModel> CreateGame(GameCreateModelDto gamedto);
 }
