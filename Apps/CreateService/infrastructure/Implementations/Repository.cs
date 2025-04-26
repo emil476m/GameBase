@@ -29,7 +29,12 @@ public class Repository : IRepository
             game_published_year as {nameof(GameDbModel.PublishedYear)}
             ;";
 
+        var sqlReiew = $@"INSERT INTO GameScore (game_score, game_id, game_score_total, total_reviews) values
+                        (0,@gameId, 0, 0);";
+
         using var conn = _dataSource.OpenConnection();
+        using var transaction = conn.BeginTransaction();
+
         try
         {
             var result = await conn.QueryFirstAsync<GameDbModel>(sql, new {
@@ -39,11 +44,16 @@ public class Repository : IRepository
                 ImgUrl = dbGame.ImgUrl,
                 PublishedYear = dbGame.PublishedYear
             });
-                
+            
+            await conn.ExecuteAsync(sqlReiew, new {gameId=result.Id});
+            
+            await transaction.CommitAsync();
+            
             return result.ToModel();
         }
         catch (Exception e)
         {
+            await transaction.RollbackAsync();
             throw new Exception("Could not create game");
         }
             
