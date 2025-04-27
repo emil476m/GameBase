@@ -107,11 +107,12 @@ jobs:
           POSTGRES_PASSWORD: ${{ secrets.POSTGRES_PASSWORD }}
           POSTGRES_USER: ${{ secrets.POSTGRES_USER }}
           FEATUREHUB_TOKEN: ${{ secrets.FEATUREHUB_TOKEN }}
+          GOOGLE_AI_API_KEY: ${{ secrets.GOOGLE_AI_API_KEY }}
         with:
           host: ${{ secrets.VPS_IP }}
           username: ${{ secrets.VPS_USER }}
           password: ${{ secrets.RSA_KEY }}
-          envs: ASPNETCORE_ENVIRONMENT,PGCONN,POSTGRES_DB,POSTGRES_PASSWORD,POSTGRES_USER,FEATUREHUB_TOKEN
+          envs: ASPNETCORE_ENVIRONMENT,PGCONN,POSTGRES_DB,POSTGRES_PASSWORD,POSTGRES_USER,FEATUREHUB_TOKEN,GOOGLE_AI_API_KEY
           script: |
             cd hh
             docker compose down
