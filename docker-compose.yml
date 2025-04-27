@@ -102,7 +102,7 @@ services:
       - ASPNETCORE_ENVIRONMENT=Development
       - ASPNETCORE_URLS=http://+:5000
       - GOOGLE_AI_API_KEY=apikey #TODO Add apikey to secrets
-      - FEATUREHUB_TOKEN = featurehubToken #TODO ADD token to secrets
+      - FEATUREHUB_TOKEN=featurehubToken #TODO ADD token to secrets
     networks:
       - game_base_network
 
