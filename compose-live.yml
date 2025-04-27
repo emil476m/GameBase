@@ -2,8 +2,6 @@
   database:
     image: postgres
     command: -c 'max_connections=100'
-    ports:
-      - 5001:5432
     restart: always
     volumes:
       - pgdatagamebase:/var/lib/postgresql/data
