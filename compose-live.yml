@@ -1,0 +1,76 @@
+﻿services:
+  database:
+    image: postgres
+    command: -c 'max_connections=100'
+    restart: always
+    volumes:
+      - pgdatagamebase:/var/lib/postgresql/data
+      - ./scripts/sql:/scripts/sql #Maops sql folder
+      - ./scripts/shell/sql-set-up.sh:/docker-entrypoint-initdb.d/sql-set-up.sh #runs initialisation scrips if  database doss sent exist
+    environment:
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_DB: ${POSTGRES_DB}
+    networks:
+      - game_base_network
+
+  featurehub:
+    image: featurehub/party-server:latest
+    restart: always
+    ports:
+      - 4085:8085
+    volumes:
+      - featurehub-h2-data:/db
+    networks:
+      - game_base_network
+        
+  gateway:
+    image: ghcr.io/emil476m/gamebase-gw:${NEW_VERSION}
+    ports:
+      - 8080:8080
+    networks:
+    - game_base_network
+  
+  searchengine:
+    image: ghcr.io/emil476m/gamebase-se:${NEW_VERSION}
+    environment:
+      - ASPNETCORE_ENVIRONMENT=${ASPNETCORE_ENVIRONMENT}
+      - ASPNETCORE_URLS=http://+:8000
+      - pgconn=${pgconn}
+    depends_on:
+      - database
+      - gateway
+    networks:
+      - game_base_network
+  
+  createservice:
+    image: ghcr.io/emil476m/gamebase-cs:${NEW_VERSION}
+    environment:
+      - ASPNETCORE_ENVIRONMENT=${ASPNETCORE_ENVIRONMENT}
+      - ASPNETCORE_URLS=http://+:6000
+      - pgconn=${pgconn}
+    depends_on:
+      - database
+      - gateway
+    networks:
+      - game_base_network
+  
+  reviewhandler:
+    image: ghcr.io/emil476m/gamebase-rh:${NEW_VERSION}
+    environment:
+      - ASPNETCORE_ENVIRONMENT=${ASPNETCORE_ENVIRONMENT}
+      - ASPNETCORE_URLS=http://+:8000
+      - pgconn=${pgconn}
+    depends_on:
+      - database
+      - gateway
+    networks:
+      - game_base_network
+
+volumes:
+  pgdatagamebase:
+  featurehub-h2-data:
+
+networks:
+  game_base_network:
+    driver: bridge
