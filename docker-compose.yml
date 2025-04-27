@@ -30,6 +30,16 @@ services:
     networks:
       - game_base_network
 
+  featurehub:
+    image: featurehub/party-server:latest
+    restart: always
+    ports:
+      - 4085:8085
+    volumes:
+      - featurehub-h2-data:/db
+    networks:
+      - game_base_network
+
   searchengine:
     build:
       context: .
@@ -84,6 +94,7 @@ services:
 
 volumes:
   pgdatagamebase:
+  featurehub-h2-data:
 
 networks:
   game_base_network:

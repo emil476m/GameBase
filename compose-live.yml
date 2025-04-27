@@ -2,8 +2,6 @@
   database:
     image: postgres
     command: -c 'max_connections=100'
-    ports:
-      - 5001:5432
     restart: always
     volumes:
       - pgdatagamebase:/var/lib/postgresql/data
@@ -15,7 +13,16 @@
       POSTGRES_DB: ${POSTGRES_DB}
     networks:
       - game_base_network
-        
+
+  featurehub:
+    image: featurehub/party-server:latest
+    restart: always
+    ports:
+      - 4085:8085
+    volumes:
+      - featurehub-h2-data:/db
+    networks:
+      - game_base_network
         
   gateway:
     image: ghcr.io/emil476m/gamebase-gw:${NEW_VERSION}
@@ -62,6 +69,7 @@
 
 volumes:
   pgdatagamebase:
+  featurehub-h2-data:
 
 networks:
   game_base_network:
