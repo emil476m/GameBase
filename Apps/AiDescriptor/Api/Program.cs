@@ -1,10 +1,13 @@
 using Api.Controllers;
+using DefaultNamespace;
 using Externalities;
 using Service;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
+builder.Services.AddSingleton<FeatureHubImplementation>();
+builder.Services.AddSingleton<FeatureHubService>();
 builder.Services.AddSingleton<GeminiAi>();
 builder.Services.AddSingleton<AIService>();
 builder.Services.AddSingleton<AIController>();

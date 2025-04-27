@@ -18,6 +18,13 @@ public class AIController : ControllerBase
     public async Task<IActionResult> AI([FromBody] QueryDto query)
     {
         var response = await _aiService.getRespons(query.Query);
-        return Ok(response);
+        if (response != null)
+        {
+            return Ok(response);
+        }
+        else
+        {
+            return BadRequest();
+        }
     }
 }

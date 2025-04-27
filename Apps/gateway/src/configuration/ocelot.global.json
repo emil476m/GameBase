@@ -87,6 +87,18 @@
           "Port": 5000
         }
       ]
+    },
+    {
+      "UpstreamHttpMethod": ["Get"],
+      "UpstreamPathTemplate": "/AiFeature",
+      "DownstreamPathTemplate": "/api/Feature",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "aidescriptionservice",
+          "Port": 5000
+        }
+      ]
     }
   ]
 }
