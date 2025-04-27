@@ -26,6 +26,7 @@
         
   gateway:
     image: ghcr.io/emil476m/gamebase-gw:${NEW_VERSION}
+    restart: always
     ports:
       - 8080:8080
     networks:
@@ -33,6 +34,7 @@
   
   searchengine:
     image: ghcr.io/emil476m/gamebase-se:${NEW_VERSION}
+    restart: always
     environment:
       - ASPNETCORE_ENVIRONMENT=${ASPNETCORE_ENVIRONMENT}
       - ASPNETCORE_URLS=http://+:8000
@@ -40,11 +42,15 @@
     depends_on:
       - database
       - gateway
+    deploy:
+      mode: replicated
+      replicas: 3
     networks:
       - game_base_network
   
   createservice:
     image: ghcr.io/emil476m/gamebase-cs:${NEW_VERSION}
+    restart: always
     environment:
       - ASPNETCORE_ENVIRONMENT=${ASPNETCORE_ENVIRONMENT}
       - ASPNETCORE_URLS=http://+:6000
@@ -52,11 +58,15 @@
     depends_on:
       - database
       - gateway
+    deploy:
+      mode: replicated
+      replicas: 2
     networks:
       - game_base_network
   
   reviewhandler:
     image: ghcr.io/emil476m/gamebase-rh:${NEW_VERSION}
+    restart: always
     environment:
       - ASPNETCORE_ENVIRONMENT=${ASPNETCORE_ENVIRONMENT}
       - ASPNETCORE_URLS=http://+:8000
@@ -64,6 +74,9 @@
     depends_on:
       - database
       - gateway
+    deploy:
+      mode: replicated
+      replicas: 4
     networks:
       - game_base_network
 
