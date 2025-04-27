@@ -92,6 +92,20 @@ services:
     networks:
       - game_base_network
 
+  aidescriptionservice:
+    build:
+      context: .
+      dockerfile: Apps/AiDescriptor/Dockerfile
+    ports:
+      - 5000:5000
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ASPNETCORE_URLS=http://+:5000
+      - GOOGLE_AI_API_KEY=apikey #TODO Add apikey to secrets
+      - FEATUREHUB_TOKEN = featurehubToken #TODO ADD token to secrets
+    networks:
+      - game_base_network
+
 volumes:
   pgdatagamebase:
   featurehub-h2-data:
