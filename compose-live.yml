@@ -40,6 +40,9 @@
     depends_on:
       - database
       - gateway
+    deploy:
+      mode: replicated
+      replicas: 3
     networks:
       - game_base_network
   
@@ -52,6 +55,9 @@
     depends_on:
       - database
       - gateway
+    deploy:
+      mode: replicated
+      replicas: 2
     networks:
       - game_base_network
   
@@ -64,6 +70,9 @@
     depends_on:
       - database
       - gateway
+    deploy:
+      mode: replicated
+      replicas: 4
     networks:
       - game_base_network
 
