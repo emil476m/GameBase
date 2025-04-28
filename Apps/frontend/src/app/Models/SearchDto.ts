@@ -1,5 +1,4 @@
 export interface SearchDto {
-  GameId : string;
-
-  GameName : string;
+  gameId : string;
+  gameName : string;
 }
