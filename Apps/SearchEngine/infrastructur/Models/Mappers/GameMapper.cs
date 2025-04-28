@@ -13,7 +13,8 @@ public class GameMapper
             GameName = entity.game_name,
             GameDescription = entity.game_description,
             GameImgUrl = entity.game_img_url,
-            GamePublishedYear = entity.game_published_year
+            GamePublishedYear = entity.game_published_year,
+            game_score = entity.game_score
         };
     }
 
@@ -25,7 +26,8 @@ public class GameMapper
             game_name = dto.GameName,
             game_description = dto.GameDescription,
             game_img_url = dto.GameImgUrl,
-            game_published_year = dto.GamePublishedYear
+            game_published_year = dto.GamePublishedYear,
+            game_score = dto.game_score
         };
     }
 }

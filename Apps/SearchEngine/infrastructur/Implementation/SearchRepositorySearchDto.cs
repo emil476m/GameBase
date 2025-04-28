@@ -37,7 +37,8 @@ public class SearchRepositorySearchDto : ISearchRepository<SearchDto, GameDto>
     public async Task<IEnumerable<GameDto>> getGames()
     {
         var sql = $@"
-                SELECT game_id, game_name, game_description, game_img_url, game_published_year FROM Game;
+                SELECT game.game_id, game_name, game_description, game_img_url, game_published_year, game_score 
+                FROM Game LEFT JOIN GameScore on Game.game_id = GameScore.game_id;
                 ";
         
         using var conn = _dataSource.OpenConnection();
@@ -51,7 +52,9 @@ public class SearchRepositorySearchDto : ISearchRepository<SearchDto, GameDto>
     public async Task<IEnumerable<GameDto>> getGamesPage(int offset)
     {
         var sql = $@"
-                SELECT game_id, game_name, game_description, game_img_url, game_published_year FROM Game LIMIT 10 OFFSET @offset;
+                SELECT game.game_id, game_name, game_description, game_img_url, game_published_year, game_score 
+                FROM Game LEFT JOIN GameScore on Game.game_id = GameScore.game_id
+                LIMIT 10 OFFSET @offset;
                 ";
         
         using var conn = _dataSource.OpenConnection();
@@ -65,7 +68,9 @@ public class SearchRepositorySearchDto : ISearchRepository<SearchDto, GameDto>
     public async Task<GameDto> getGame(Guid gameId)
     {
         var sql = $@"
-                SELECT game_id, game_name, game_description, game_img_url, game_published_year FROM Game WHERE game_id = @id;
+                SELECT game.game_id, game_name, game_description, game_img_url, game_published_year, game_score 
+                FROM Game LEFT JOIN GameScore on Game.game_id = GameScore.game_id
+                WHERE game.game_id = @id;
                 ";
         
         using var conn = _dataSource.OpenConnection();
