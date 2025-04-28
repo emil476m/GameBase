@@ -18,7 +18,7 @@
       POSTGRES_USER: ${POSTGRES_USER}
       POSTGRES_DB: ${POSTGRES_DB}
     networks:
-      - game_base_network_swarm
+      - game_base_network
 
   featurehub:
     image: featurehub/party-server:latest
@@ -30,12 +30,13 @@
         order: start-first
         failure_action: rollback
     ports:
-      - 4085:8085
+      - target: 8085
+        published: 4085
+        mode: host
     volumes:
       - featurehub-h2-data:/db
     networks:
       - game_base_network
-      - game_base_network_swarm
         
   gateway:
     image: ghcr.io/emil476m/gamebase-gw:latest
@@ -47,10 +48,11 @@
         order: start-first
         failure_action: rollback
     ports:
-      - 8080:8080
+      - target: 8080
+        published: 8080
+        mode: host
     networks:
     - game_base_network
-    - game_base_network_swarm
   
   searchengine:
     image: ghcr.io/emil476m/gamebase-se:latest
@@ -71,7 +73,7 @@
         order: start-first
         failure_action: rollback
     networks:
-      - game_base_network_swarm
+      - game_base_network
   
   createservice:
     image: ghcr.io/emil476m/gamebase-cs:latest
@@ -92,7 +94,7 @@
         order: start-first
         failure_action: rollback
     networks:
-      - game_base_network_swarm
+      - game_base_network
   
   reviewhandler:
     image: ghcr.io/emil476m/gamebase-rh:latest
@@ -113,14 +115,12 @@
         order: start-first
         failure_action: rollback
     networks:
-      - game_base_network_swarm
+      - game_base_network
 
 volumes:
   pgdatagamebase:
   featurehub-h2-data:
 
 networks:
-  - game_base_network_swarm:
-      driver: overlay
-  - game_base_network:
-      driver: bridge
+  game_base_network:
+    driver: overlay
