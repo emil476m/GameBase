@@ -61,6 +61,15 @@ jobs:
             .
           docker push ghcr.io/emil476m/gamebase-cs --all-tags
 
+      # Build the Docker image for AI descriptor service
+      - name: Build and Push Docker image (AI descriptor)
+        run: |
+          docker build \
+            -t ghcr.io/emil476m/gamebase-ad:version-0 \
+            -f ./Apps/AiDescriptor/Dockerfile \
+            .
+          docker push ghcr.io/emil476m/gamebase-ad --all-tags
+    
       # Build the Docker image for SearchEngine
       - name: Build and Push Docker image (SearchEngine)
         run: |
