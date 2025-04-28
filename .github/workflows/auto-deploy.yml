@@ -2,7 +2,7 @@ name: auto-deploy-docker-images
 on:
   push:
     branches:
-      - main
+      - feat/switch-to-compose-live
 
 jobs:
   delivery:
@@ -117,4 +117,4 @@ jobs:
             cd hh
             docker compose down
             docker compose pull
-            docker compose up -d
+            docker compose -f compose-live.yml up -d
