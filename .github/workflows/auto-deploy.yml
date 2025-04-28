@@ -89,19 +89,20 @@ jobs:
       
       - name: deliver to server
         uses: appleboy/scp-action@v0.1.7
+        env:
+          NEW_VERSION: ${{ steps.semver-app.outputs.version }}
+          ASPNETCORE_ENVIRONMENT: ${{ secrets.ASPNETCORE_ENVIRONMENT }}
+          PGCONN: ${{ secrets.PGCONN }}
+          POSTGRES_DB: ${{ secrets.POSTGRES_DB }}
+          POSTGRES_PASSWORD: ${{ secrets.POSTGRES_PASSWORD }}
+          POSTGRES_USER: ${{ secrets.POSTGRES_USER }}
+          FEATUREHUB_TOKEN: ${{ secrets.FEATUREHUB_TOKEN }}
+          GOOGLE_AI_API_KEY: ${{ secrets.GOOGLE_AI_API_KEY }}
         with: 
           host: ${{ secrets.VPS_IP }}
           username: ${{ secrets.VPS_USER }}
           password: ${{ secrets.RSA_KEY }}
-          env:
-            NEW_VERSION: ${{ steps.semver-app.outputs.version }}
-            ASPNETCORE_ENVIRONMENT: ${{ secrets.ASPNETCORE_ENVIRONMENT }}
-            PGCONN: ${{ secrets.PGCONN }}
-            POSTGRES_DB: ${{ secrets.POSTGRES_DB }}
-            POSTGRES_PASSWORD: ${{ secrets.POSTGRES_PASSWORD }}
-            POSTGRES_USER: ${{ secrets.POSTGRES_USER }}
-            FEATUREHUB_TOKEN: ${{ secrets.FEATUREHUB_TOKEN }}
-            GOOGLE_AI_API_KEY: ${{ secrets.GOOGLE_AI_API_KEY }}
+          envs: ASPNETCORE_ENVIRONMENT,PGCONN,POSTGRES_DB,POSTGRES_PASSWORD,POSTGRES_USER,FEATUREHUB_TOKEN,GOOGLE_AI_API_KEY,NEW_VERSION
           source: "*"
           target: hh/
           rm: true
