@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  baseURL:  'http://167.86.127.39:8080/'// Docker local
+  baseURL:  'http://gateway:8080/'// Docker local
 };
 
 
