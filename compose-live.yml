@@ -32,7 +32,7 @@
     ports:
       - target: 8085
         published: 4085
-        mode: host
+        mode: ingress
     volumes:
       - featurehub-h2-data:/db
     networks:
@@ -50,7 +50,7 @@
     ports:
       - target: 8080
         published: 8080
-        mode: host
+        mode: ingress
     networks:
     - game_base_network
   
