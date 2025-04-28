@@ -14,7 +14,7 @@ builder.Services.AddOcelot(builder.Configuration);
 builder.Services.AddOpenApi();
 
 // Configure the HTTP request pipeline.
-if (builder.Environment.IsDevelopment())
+/**if (builder.Environment.IsDevelopment())
 {
     builder.Services.AddCors(options =>
     {
@@ -43,7 +43,18 @@ else if (builder.Environment.IsProduction())
                 .AllowAnyHeader();
         });
     });
-}
+}**/
+
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("CorsPolicy", policy =>
+    {
+        policy
+            .AllowAnyOrigin()
+            .AllowAnyMethod()
+            .AllowAnyHeader();
+    });
+});
 
 var app = builder.Build();
 
