@@ -80,6 +80,16 @@
     networks:
       - game_base_network
 
+  aidescriptionservice:
+    restart: always
+    image: ghcr.io/emil476m/gamebase-ad:${NEW_VERSION}
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ASPNETCORE_URLS=http://+:5000
+      - GOOGLE_AI_API_KEY=${GOOGLE_AI_API_KEY}
+      - FEATUREHUB_TOKEN=${FEATUREHUB_TOKEN}
+    networks:
+      - game_base_network
 volumes:
   pgdatagamebase:
   featurehub-h2-data:
