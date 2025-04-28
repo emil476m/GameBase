@@ -29,13 +29,13 @@
         <ion-card style="width: 20%">
           <ion-card-content>
             <ion-buttons slot="end">
-              <ion-select label="Rating: " labelPlacement="floating" placeholder="enter rating">
-                <ion-select label="Release year:" labelPlacement="flaoting" placeholder="year" [formControl]="ratingcontrol">
-                  <ion-select-option *ngFor="let year of ratinglist">{{year}}</ion-select-option>
+
+                <ion-select label="Rating:" labelPlacement="flaoting" placeholder="enter rating" [formControl]="ratingcontrol">
+                  <ion-select-option *ngFor="let rating of ratinglist" [value]="rating">{{rating}}</ion-select-option>
                 </ion-select>
-              </ion-select>
+
             </ion-buttons>
-            <ion-button [disabled]="ratingcontrol.invalid">
+            <ion-button [disabled]="ratingcontrol.invalid" (click)="createReview()">
               Add rating
             </ion-button>
           </ion-card-content>

@@ -16,7 +16,7 @@
   </ion-item>
   <ion-item>
     <ion-select label="Release year:" labelPlacement="flaoting" placeholder="year" [formControl]="releseYear">
-      <ion-select-option *ngFor="let year of yearlist">{{year}}</ion-select-option>
+      <ion-select-option *ngFor="let year of yearlist" [value]="year">{{year}}</ion-select-option>
     </ion-select>
   </ion-item>
   <ion-item>
