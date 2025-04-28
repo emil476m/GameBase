@@ -29,6 +29,8 @@
     restart: always
     ports:
       - 8080:8080
+    environment:
+      - VPS_IP= ${VPS_IP} 
     networks:
     - game_base_network
   
@@ -38,7 +40,7 @@
     environment:
       - ASPNETCORE_ENVIRONMENT=${ASPNETCORE_ENVIRONMENT}
       - ASPNETCORE_URLS=http://+:8000
-      - pgconn=${pgconn}
+      - pgconn=${PGCONN}
     depends_on:
       - database
       - gateway
@@ -54,7 +56,7 @@
     environment:
       - ASPNETCORE_ENVIRONMENT=${ASPNETCORE_ENVIRONMENT}
       - ASPNETCORE_URLS=http://+:6000
-      - pgconn=${pgconn}
+      - pgconn=${PGCONN}
     depends_on:
       - database
       - gateway
@@ -70,7 +72,7 @@
     environment:
       - ASPNETCORE_ENVIRONMENT=${ASPNETCORE_ENVIRONMENT}
       - ASPNETCORE_URLS=http://+:8000
-      - pgconn=${pgconn}
+      - pgconn=${PGCONN}
     depends_on:
       - database
       - gateway
