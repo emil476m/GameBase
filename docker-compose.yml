@@ -21,6 +21,7 @@ services:
       - game_base_network
 
   gateway:
+    restart: always
     build:
       context: .
       dockerfile: Apps/gateway/Dockerfile
@@ -41,6 +42,7 @@ services:
       - game_base_network
 
   searchengine:
+    restart: always
     build:
       context: .
       dockerfile: Apps/SearchEngine/Dockerfile
@@ -59,6 +61,7 @@ services:
       - game_base_network
         
   createservice:
+    restart: always
     build:
       context: .
       dockerfile: Apps/CreateService/Dockerfile
@@ -75,6 +78,7 @@ services:
       - game_base_network
 
   reviewhandler:
+    restart: always
     build:
       context: .
       dockerfile: Apps/reviewHandler/Dockerfile
@@ -93,6 +97,7 @@ services:
       - game_base_network
 
   aidescriptionservice:
+    restart: always
     build:
       context: .
       dockerfile: Apps/AiDescriptor/Dockerfile
