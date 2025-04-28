@@ -17,6 +17,30 @@
       ]
     },
     {
+      "UpstreamHttpMethod": ["Get"],
+      "UpstreamPathTemplate": "/Game/{GameId}",
+      "DownstreamPathTemplate": "/SearchEngine/Game/{GameId}",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "searchengine",
+          "Port": 8000
+        }
+      ]
+    },
+    {
+      "UpstreamHttpMethod": ["Get"],
+      "UpstreamPathTemplate": "/Games",
+      "DownstreamPathTemplate": "/SearchEngine/Games",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "searchengine",
+          "Port": 8000
+        }
+      ]
+    },
+    {
       "UpstreamHttpMethod": ["Post"],
       "UpstreamPathTemplate": "/ReviewScore",
       "DownstreamPathTemplate": "/Review",
@@ -49,6 +73,30 @@
         {
           "Host": "createservice",
           "Port": 6000
+        }
+      ]
+    },
+    {
+      "UpstreamHttpMethod": ["Post"],
+      "UpstreamPathTemplate": "/CreateAIDescription",
+      "DownstreamPathTemplate": "/api/AIDescription",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "aidescriptionservice",
+          "Port": 5000
+        }
+      ]
+    },
+    {
+      "UpstreamHttpMethod": ["Get"],
+      "UpstreamPathTemplate": "/AiFeature",
+      "DownstreamPathTemplate": "/api/Feature",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "aidescriptionservice",
+          "Port": 5000
         }
       ]
     }

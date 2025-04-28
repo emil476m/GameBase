@@ -21,6 +21,7 @@ services:
       - game_base_network
 
   gateway:
+    restart: always
     build:
       context: .
       dockerfile: Apps/gateway/Dockerfile
@@ -30,7 +31,18 @@ services:
     networks:
       - game_base_network
 
+  featurehub:
+    image: featurehub/party-server:latest
+    restart: always
+    ports:
+      - 4085:8085
+    volumes:
+      - featurehub-h2-data:/db
+    networks:
+      - game_base_network
+
   searchengine:
+    restart: always
     build:
       context: .
       dockerfile: Apps/SearchEngine/Dockerfile
@@ -49,6 +61,7 @@ services:
       - game_base_network
         
   createservice:
+    restart: always
     build:
       context: .
       dockerfile: Apps/CreateService/Dockerfile
@@ -65,6 +78,7 @@ services:
       - game_base_network
 
   reviewhandler:
+    restart: always
     build:
       context: .
       dockerfile: Apps/reviewHandler/Dockerfile
@@ -82,6 +96,21 @@ services:
     networks:
       - game_base_network
 
+  aidescriptionservice:
+    restart: always
+    build:
+      context: .
+      dockerfile: Apps/AiDescriptor/Dockerfile
+    ports:
+      - 5000:5000
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ASPNETCORE_URLS=http://+:5000
+      - GOOGLE_AI_API_KEY=apikey #TODO Add apikey to secrets
+      - FEATUREHUB_TOKEN=featurehubToken #TODO ADD token to secrets
+    networks:
+      - game_base_network
+
   gamebasefrontend:
     build:
       context: ./Apps/frontend
@@ -93,6 +122,7 @@ services:
 
 volumes:
   pgdatagamebase:
+  featurehub-h2-data:
 
 networks:
   game_base_network:
