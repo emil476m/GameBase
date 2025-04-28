@@ -1,11 +1,13 @@
 export interface GameDto {
-  Id : string;
+  gameId : string;
 
-  Name : string;
+  gameName : string;
 
-  Description : string;
+  gameDescription : string;
 
-  ImgUrl : string;
+  gameImgUrl : string;
 
-  PublishedYear : string;
+  gamePublishedYear : string;
+
+  game_score : number;
 }
