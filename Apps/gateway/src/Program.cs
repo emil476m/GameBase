@@ -13,23 +13,9 @@ builder.Services.AddOcelot(builder.Configuration);
 // Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
 builder.Services.AddOpenApi();
 
-builder.Services.AddCors(options =>
-{
-    //Change policy  Deployment
-    options.AddPolicy("CorsPolicy", policy =>
-    {
-        policy
-            .AllowAnyOrigin()
-            .AllowAnyMethod()
-            .AllowAnyHeader();
-    });
-});
-
 // Configure the HTTP request pipeline.
 if (builder.Environment.IsDevelopment())
 {
-    Console.WriteLine("settings cors Development environment");
-
     builder.Services.AddCors(options =>
     {
         options.AddPolicy("CorsPolicy", policy =>
@@ -43,8 +29,6 @@ if (builder.Environment.IsDevelopment())
 }
 else if (builder.Environment.IsProduction())
 {
-    Console.WriteLine("settings cors Production");
-    
     builder.Services.AddCors(options =>
     {
         options.AddPolicy("CorsPolicy", policy =>
