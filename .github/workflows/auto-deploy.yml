@@ -89,16 +89,16 @@ jobs:
           
       - name: make latest version
         run: |
-          docker tag ghcr.io/emil476m/gamebase-gw:${{ steps.semver-app.outputs.version }} ghcr.io/emil476m/gamebase-gw:latest \ 
+          docker tag ghcr.io/emil476m/gamebase-gw:${{ steps.semver-app.outputs.version }} ghcr.io/emil476m/gamebase-gw:latest
           docker push ghcr.io/emil476m/gamebase-gw:latest 
           
-          docker tag ghcr.io/emil476m/gamebase-cs:${{ steps.semver-app.outputs.version }} ghcr.io/emil476m/gamebase-cs:latest \
+          docker tag ghcr.io/emil476m/gamebase-cs:${{ steps.semver-app.outputs.version }} ghcr.io/emil476m/gamebase-cs:latest
           docker push ghcr.io/emil476m/gamebase-cs:latest
           
-          docker tag ghcr.io/emil476m/gamebase-se:${{ steps.semver-app.outputs.version }} ghcr.io/emil476m/gamebase-se:latest \
+          docker tag ghcr.io/emil476m/gamebase-se:${{ steps.semver-app.outputs.version }} ghcr.io/emil476m/gamebase-se:latest
           docker push ghcr.io/emil476m/gamebase-se:latest
           
-          docker tag ghcr.io/emil476m/gamebase-rh:${{ steps.semver-app.outputs.version }} ghcr.io/emil476m/gamebase-rh:latest \
+          docker tag ghcr.io/emil476m/gamebase-rh:${{ steps.semver-app.outputs.version }} ghcr.io/emil476m/gamebase-rh:latest
           docker push ghcr.io/emil476m/gamebase-rh:latest
       
       - name: deliver to server
