@@ -30,6 +30,10 @@ services:
       - 8081:8081
     networks:
       - game_base_network
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ASPNETCORE_URLS=http://+:8000
+      - VPS_IP=127.0.0.1 #Do to being a test environment this is just localhost
 
   featurehub:
     image: featurehub/party-server:latest

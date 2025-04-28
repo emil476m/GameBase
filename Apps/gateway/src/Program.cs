@@ -15,6 +15,7 @@ builder.Services.AddOpenApi();
 
 builder.Services.AddCors(options =>
 {
+    //Change policy  Deployment
     options.AddPolicy("CorsPolicy", policy =>
     {
         policy
@@ -24,9 +25,45 @@ builder.Services.AddCors(options =>
     });
 });
 
+// Configure the HTTP request pipeline.
+if (builder.Environment.IsDevelopment())
+{
+    Console.WriteLine("settings cors Development environment");
+
+    builder.Services.AddCors(options =>
+    {
+        options.AddPolicy("CorsPolicy", policy =>
+        {
+            policy
+                .AllowAnyOrigin()
+                .AllowAnyMethod()
+                .AllowAnyHeader();
+        });
+    });
+}
+else if (builder.Environment.IsProduction())
+{
+    Console.WriteLine("settings cors Production");
+    
+    builder.Services.AddCors(options =>
+    {
+        options.AddPolicy("CorsPolicy", policy =>
+        {
+            policy
+                .WithOrigins(
+                    "http://localhost:4200",
+                    "http://gamebasefrontend:4200",
+                    "http://" + Environment.GetEnvironmentVariable("VPS_IP") + ":4200"
+                )
+                .AllowAnyMethod()
+                .AllowAnyHeader();
+        });
+    });
+}
+
 var app = builder.Build();
 
-// Configure the HTTP request pipeline.
+
 if (app.Environment.IsDevelopment())
 {
     app.MapOpenApi();
