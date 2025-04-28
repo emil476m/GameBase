@@ -112,7 +112,7 @@ jobs:
           host: ${{ secrets.VPS_IP }}
           username: ${{ secrets.VPS_USER }}
           password: ${{ secrets.RSA_KEY }}
-          envs: ASPNETCORE_ENVIRONMENT,pgconn,POSTGRES_DB,POSTGRES_PASSWORD,POSTGRES_USER,FEATUREHUB_TOKEN,GOOGLE_AI_API_KEY,NEW_VERSION
+          envs: ASPNETCORE_ENVIRONMENT,POSTGRES_DB,POSTGRES_PASSWORD,POSTGRES_USER,FEATUREHUB_TOKEN,GOOGLE_AI_API_KEY,NEW_VERSION,pgconn
           script: |
             cd hh
             docker compose down
