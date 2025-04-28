@@ -2,7 +2,7 @@ name: auto-deploy-docker-images
 on:
   push:
     branches:
-      - main
+      - feat/switch-to-compose-live
 
 jobs:
   delivery:
