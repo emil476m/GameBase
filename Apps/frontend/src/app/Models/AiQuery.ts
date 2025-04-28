@@ -1,4 +1,4 @@
-﻿export class AiQuery
+﻿export interface AiQuery
 {
-  query: string | undefined;
+  query: string;
 }
