@@ -30,8 +30,8 @@
     },
     {
       "UpstreamHttpMethod": ["Get"],
-      "UpstreamPathTemplate": "/Games",
-      "DownstreamPathTemplate": "/SearchEngine/Games",
+      "UpstreamPathTemplate": "/Games/{page}",
+      "DownstreamPathTemplate": "/SearchEngine/Games/{page}",
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
