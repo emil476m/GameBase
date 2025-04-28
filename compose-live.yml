@@ -119,4 +119,4 @@ volumes:
 
 networks:
   game_base_network:
-    driver: bridge
+    driver: overlay
