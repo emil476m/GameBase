@@ -120,3 +120,4 @@ volumes:
 networks:
   game_base_network:
     driver: overlay
+    external: true
