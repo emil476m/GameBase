@@ -95,7 +95,7 @@
   gamebasefrontend:
     image: ghcr.io/emil476m/gamebase-web:${NEW_VERSION}
     ports:
-      - 80:4200
+      - 4200:4200
     networks:
       - game_base_network
 
