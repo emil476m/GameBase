@@ -86,10 +86,8 @@ export class CreateGamePage {
   }
 
   AidescCall() {
-    const query: AiQuery =
-      {
-        query: this.AskAi.value!,
-      }
+    const query: AiQuery = new AiQuery();
+    query.query == this.AskAi.getRawValue();
     const call = this.http.post<AIResponsDto>(environment.baseURL + "CreateAIDescription",query,);
     call.subscribe((resData: AIResponsDto) => {
       this.AIresp.response = resData.response;
