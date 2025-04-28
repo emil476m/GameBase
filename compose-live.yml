@@ -37,7 +37,7 @@
       - game_base_network
         
   gateway:
-    image: ghcr.io/emil476m/gamebase-gw:${NEW_VERSION}
+    image: ghcr.io/emil476m/gamebase-gw:latest
     restart: always
     deploy:
       update_config:
@@ -51,7 +51,7 @@
     - game_base_network
   
   searchengine:
-    image: ghcr.io/emil476m/gamebase-se:${NEW_VERSION}
+    image: ghcr.io/emil476m/gamebase-se:latest
     restart: always
     environment:
       - ASPNETCORE_ENVIRONMENT=${ASPNETCORE_ENVIRONMENT}
@@ -72,7 +72,7 @@
       - game_base_network
   
   createservice:
-    image: ghcr.io/emil476m/gamebase-cs:${NEW_VERSION}
+    image: ghcr.io/emil476m/gamebase-cs:latest
     restart: always
     environment:
       - ASPNETCORE_ENVIRONMENT=${ASPNETCORE_ENVIRONMENT}
@@ -93,7 +93,7 @@
       - game_base_network
   
   reviewhandler:
-    image: ghcr.io/emil476m/gamebase-rh:${NEW_VERSION}
+    image: ghcr.io/emil476m/gamebase-rh:latest
     restart: always
     environment:
       - ASPNETCORE_ENVIRONMENT=${ASPNETCORE_ENVIRONMENT}

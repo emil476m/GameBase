@@ -47,7 +47,7 @@ jobs:
       - name: Build and Push Docker image (gateway)
         run: |
           docker build \
-            -t ghcr.io/emil476m/gamebase-gw:version-0 \
+            -t ghcr.io/emil476m/gamebase-gw:${{ steps.semver-app.outputs.version }} ghcr.io/emil476m/gamebase-gw:latest \
             -f ./Apps/gateway/Dockerfile \
             .
           docker push ghcr.io/emil476m/gamebase-gw --all-tags
@@ -56,7 +56,7 @@ jobs:
       - name: Build and Push Docker image (CreateService)
         run: |
           docker build \
-            -t ghcr.io/emil476m/gamebase-cs:version-0 \
+            -t ghcr.io/emil476m/gamebase-cs:${{ steps.semver-app.outputs.version }} ghcr.io/emil476m/gamebase-cs:latest \
             -f ./Apps/CreateService/Dockerfile \
             .
           docker push ghcr.io/emil476m/gamebase-cs --all-tags
@@ -65,7 +65,7 @@ jobs:
       - name: Build and Push Docker image (SearchEngine)
         run: |
           docker build \
-            -t ghcr.io/emil476m/gamebase-se:version-0 \
+            -t ghcr.io/emil476m/gamebase-se:${{ steps.semver-app.outputs.version }} ghcr.io/emil476m/gamebase-se:latest \
             -f ./Apps/SearchEngine/Dockerfile \
             .
           docker push ghcr.io/emil476m/gamebase-se --all-tags
@@ -75,7 +75,7 @@ jobs:
       - name: Build and Push Docker image (reviewHandler)
         run: |
           docker build \
-            -t ghcr.io/emil476m/gamebase-rh:version-0 \
+            -t ghcr.io/emil476m/gamebase-rh:${{ steps.semver-app.outputs.version }} ghcr.io/emil476m/gamebase-rh:latest \
             -f ./Apps/reviewHandler/Dockerfile \
             .
           docker push ghcr.io/emil476m/gamebase-rh --all-tags
