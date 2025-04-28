@@ -1,7 +1,7 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
     <ion-title mode="ios">
-      Game
+      {{ gameTitle.value }}
     </ion-title>
   </ion-toolbar>
 </ion-header>
@@ -10,21 +10,21 @@
     <ion-card>
       <ion-card-content>
         <div style="display: flex; flex-flow: wrap; flex-direction: row">
-          <ion-img src="https://preview.redd.it/new-game-cover-from-larians-website-v0-m2lmw222h0ka1.png?auto=webp&s=ba904ad42906960a96a70ce1c27ee6d3ff5edead" style="height: 25%; width: 20%"></ion-img>
+          <ion-img src="{{imgUrl.value}}" style="height: 25%; width: 20%"></ion-img>
           <ion-grid>
             <ion-row>
               <ion-col>
-                <ion-title>Description</ion-title>
-                <ion-textarea style="font-weight: normal; font-size: 12px; overflow: auto;">game description</ion-textarea>
+                <ion-title>Game Description</ion-title>
+                <ion-textarea style="font-weight: normal; font-size: 12px; overflow: auto;">{{ gameDesc.value }}</ion-textarea>
               </ion-col>
             </ion-row>
             <ion-row>
               <ion-col>
-                <ion-title style="font-weight: normal; font-size: 12px">Release year: 2019</ion-title>
+                <ion-title style="font-weight: normal; font-size: 12px">Release year: {{ releaseYear.value }}</ion-title>
               </ion-col>
             </ion-row>
           </ion-grid>
-          <ion-text style="margin: 1%; align-self: center">rating: 10 <ion-icon name="game-controller"></ion-icon></ion-text>
+          <ion-text style="margin: 1%; align-self: center">rating: {{ gameScore.value }} <ion-icon name="game-controller"></ion-icon></ion-text>
         </div>
         <ion-card style="width: 20%">
           <ion-card-content>
