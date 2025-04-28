@@ -111,7 +111,7 @@ jobs:
         env:
           NEW_VERSION: ${{ steps.semver-app.outputs.version }}
           ASPNETCORE_ENVIRONMENT: ${{ secrets.ASPNETCORE_ENVIRONMENT }}
-          PGCONN: ${{ secrets.PGCONN }}
+          pgconn: ${{ secrets.PGCONN }}
           POSTGRES_DB: ${{ secrets.POSTGRES_DB }}
           POSTGRES_PASSWORD: ${{ secrets.POSTGRES_PASSWORD }}
           POSTGRES_USER: ${{ secrets.POSTGRES_USER }}
@@ -121,9 +121,9 @@ jobs:
           host: ${{ secrets.VPS_IP }}
           username: ${{ secrets.VPS_USER }}
           password: ${{ secrets.RSA_KEY }}
-          envs: ASPNETCORE_ENVIRONMENT,PGCONN,POSTGRES_DB,POSTGRES_PASSWORD,POSTGRES_USER,FEATUREHUB_TOKEN,GOOGLE_AI_API_KEY
+          envs: ASPNETCORE_ENVIRONMENT,pgconn,POSTGRES_DB,POSTGRES_PASSWORD,POSTGRES_USER,FEATUREHUB_TOKEN,GOOGLE_AI_API_KEY
           script: |
             cd hh
             docker compose down
             docker compose pull
-            docker compose up -d
+            docker compose -f compose-live.yml up --build -d
