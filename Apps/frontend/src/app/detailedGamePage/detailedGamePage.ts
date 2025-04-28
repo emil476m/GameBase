@@ -6,6 +6,8 @@ import {HttpClient} from "@angular/common/http";
 import {firstValueFrom} from "rxjs";
 import {ActivatedRoute} from "@angular/router";
 import {GameDto} from "../Models/GameDto";
+import {CreateReviewDto} from "../Models/CreateReviewDto";
+import {ReviewDto} from "../Models/ReviewDto";
 
 
 @Component({
@@ -66,10 +68,32 @@ export class DetailedGamePage {
 
   async getGameScore(){
     try {
-      const call = this.http.get<number>(environment.baseURL + "ReviewScore/" + this.route.snapshot.paramMap.get('gameId'));
-      const result = await firstValueFrom<number>(call);
+      const call = this.http.get<ReviewDto>(environment.baseURL + "ReviewScore/" + this.route.snapshot.paramMap.get('gameId'));
+      const result = await firstValueFrom<ReviewDto>(call);
 
-      this.gameScore.setValue(result.toString());
+      this.gameScore.setValue(result.gameScore.toString());
+
+    } catch (error) {
+      // @ts-ignore
+      if (error.status === 404) {
+        console.log("could not find response");
+      } else {
+        console.error("Unexpected error " + error);
+      }
+    }
+  }
+
+  async createReview(){
+    try {
+      const review : CreateReviewDto = {
+        game_id : this.route.snapshot.paramMap.get('gameId')!,
+        score : this.ratingcontrol.value!,
+      }
+
+      const call = this.http.post<ReviewDto>(environment.baseURL + "ReviewScore", review);
+      const result = await firstValueFrom<ReviewDto>(call);
+
+      this.gameScore.setValue(result.gameScore.toString());
 
     } catch (error) {
       // @ts-ignore
