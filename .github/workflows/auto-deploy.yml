@@ -2,7 +2,7 @@ name: auto-deploy-docker-images
 on:
   push:
     branches:
-      - main
+      - feat/swarm
 
 jobs:
   delivery:
@@ -115,6 +115,4 @@ jobs:
           envs: ASPNETCORE_ENVIRONMENT,PGCONN,POSTGRES_DB,POSTGRES_PASSWORD,POSTGRES_USER,FEATUREHUB_TOKEN,GOOGLE_AI_API_KEY
           script: |
             cd hh
-            docker compose down
-            docker compose pull
-            docker compose up -d
+            docker stack deploy --compose-file compose-live.yml

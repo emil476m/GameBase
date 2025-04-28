@@ -9,6 +9,12 @@ services:
       - pgdatagamebase:/var/lib/postgresql/data
       - ./scripts/sql:/scripts/sql #Maops sql folder
       - ./scripts/shell/sql-set-up.sh:/docker-entrypoint-initdb.d/sql-set-up.sh #runs initialisation scrips if  database doss sent exist
+    deploy:
+      update_config:
+        parallelism: 1
+        delay: 10s
+        order: start-first
+        failure_action: rollback
     environment:
       POSTGRES_PASSWORD: postgres
       POSTGRES_USER: postgres
@@ -28,6 +34,12 @@ services:
     ports:
       - 8080:8080
       - 8081:8081
+    deploy:
+      update_config:
+        parallelism: 1
+        delay: 10s
+        order: start-first
+        failure_action: rollback
     networks:
       - game_base_network
 
@@ -36,6 +48,12 @@ services:
     restart: always
     ports:
       - 4085:8085
+    deploy:
+      update_config:
+        parallelism: 1
+        delay: 10s
+        order: start-first
+        failure_action: rollback
     volumes:
       - featurehub-h2-data:/db
     networks:
@@ -57,6 +75,12 @@ services:
     depends_on:
       - database
       - gateway
+    deploy:
+      update_config:
+        parallelism: 1
+        delay: 10s
+        order: start-first
+        failure_action: rollback
     networks:
       - game_base_network
         
@@ -74,6 +98,12 @@ services:
     depends_on:
       - database
       - gateway
+    deploy:
+      update_config:
+        parallelism: 1
+        delay: 10s
+        order: start-first
+        failure_action: rollback
     networks:
       - game_base_network
 
@@ -90,6 +120,12 @@ services:
       - ASPNETCORE_ENVIRONMENT=Development #TODO Change away from development if this file is used for release
       - ASPNETCORE_URLS=http://+:8000 #Ths allows us 4to use swagger On the API
       - pgconn=Host=database;Database=GameBaseDb;User Id=postgres;Password=postgres;Port=5432 #Connection string for DB
+    deploy:
+      update_config:
+        parallelism: 1
+        delay: 10s
+        order: start-first
+        failure_action: rollback
     depends_on:
       - database
       - gateway
@@ -108,6 +144,12 @@ services:
       - ASPNETCORE_URLS=http://+:5000
       - GOOGLE_AI_API_KEY=apikey #TODO Add apikey to secrets
       - FEATUREHUB_TOKEN=featurehubToken #TODO ADD token to secrets
+    deploy:
+      update_config:
+        parallelism: 1
+        delay: 10s
+        order: start-first
+        failure_action: rollback
     networks:
       - game_base_network
 

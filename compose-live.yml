@@ -3,6 +3,12 @@
     image: postgres
     command: -c 'max_connections=100'
     restart: always
+    deploy:
+      update_config:
+        parallelism: 1
+        delay: 10s
+        order: start-first
+        failure_action: rollback
     volumes:
       - pgdatagamebase:/var/lib/postgresql/data
       - ./scripts/sql:/scripts/sql #Maops sql folder
@@ -17,6 +23,12 @@
   featurehub:
     image: featurehub/party-server:latest
     restart: always
+    deploy:
+      update_config:
+        parallelism: 1
+        delay: 10s
+        order: start-first
+        failure_action: rollback
     ports:
       - 4085:8085
     volumes:
@@ -27,6 +39,12 @@
   gateway:
     image: ghcr.io/emil476m/gamebase-gw:${NEW_VERSION}
     restart: always
+    deploy:
+      update_config:
+        parallelism: 1
+        delay: 10s
+        order: start-first
+        failure_action: rollback
     ports:
       - 8080:8080
     networks:
@@ -45,6 +63,11 @@
     deploy:
       mode: replicated
       replicas: 3
+      update_config:
+        parallelism: 1
+        delay: 10s
+        order: start-first
+        failure_action: rollback
     networks:
       - game_base_network
   
@@ -61,6 +84,11 @@
     deploy:
       mode: replicated
       replicas: 2
+      update_config:
+        parallelism: 1
+        delay: 10s
+        order: start-first
+        failure_action: rollback
     networks:
       - game_base_network
   
@@ -77,6 +105,11 @@
     deploy:
       mode: replicated
       replicas: 4
+      update_config:
+        parallelism: 1
+        delay: 10s
+        order: start-first
+        failure_action: rollback
     networks:
       - game_base_network
 
