@@ -32,7 +32,6 @@ services:
       - game_base_network
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
-      - ASPNETCORE_URLS=http://+:8000
 
   featurehub:
     image: featurehub/party-server:latest
