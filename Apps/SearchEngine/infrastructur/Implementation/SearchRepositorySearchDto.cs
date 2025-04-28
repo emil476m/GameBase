@@ -47,6 +47,20 @@ public class SearchRepositorySearchDto : ISearchRepository<SearchDto, GameDto>
         return list.Select(entity => _gameMapper.FromEntity(entity)); //Maps entity element in list to DocumentSimple
         
     }
+    
+    public async Task<IEnumerable<GameDto>> getGamesPage(int offset)
+    {
+        var sql = $@"
+                SELECT game_id, game_name, game_description, game_img_url, game_published_year FROM Game LIMIT 10 OFFSET @offset;
+                ";
+        
+        using var conn = _dataSource.OpenConnection();
+        
+        var list = await conn.QueryAsync<GameEntity>(sql, new {offset=offset});
+
+        return list.Select(entity => _gameMapper.FromEntity(entity)); //Maps entity element in list to DocumentSimple
+        
+    }
 
     public async Task<GameDto> getGame(Guid gameId)
     {
