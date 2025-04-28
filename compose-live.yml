@@ -38,7 +38,7 @@
     environment:
       - ASPNETCORE_ENVIRONMENT=${ASPNETCORE_ENVIRONMENT}
       - ASPNETCORE_URLS=http://+:8000
-      - pgconn=${pgconn}
+      - pgconn=${PGCONN}
     depends_on:
       - database
       - gateway
@@ -54,7 +54,7 @@
     environment:
       - ASPNETCORE_ENVIRONMENT=${ASPNETCORE_ENVIRONMENT}
       - ASPNETCORE_URLS=http://+:6000
-      - pgconn=${pgconn}
+      - pgconn=${PGCONN}
     depends_on:
       - database
       - gateway
@@ -70,7 +70,7 @@
     environment:
       - ASPNETCORE_ENVIRONMENT=${ASPNETCORE_ENVIRONMENT}
       - ASPNETCORE_URLS=http://+:8000
-      - pgconn=${pgconn}
+      - pgconn=${PGCONN}
     depends_on:
       - database
       - gateway
