@@ -1,5 +1,6 @@
 using infrastructur.Implementations;
 using infrastructur.Interfaces;
+using infrastructur.Models.Dto;
 using service.Implementations;
 using Service.Interfaces;
 
@@ -8,8 +9,8 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddNpgsqlDataSource(Environment.GetEnvironmentVariable("pgconn")!,
     dataSourceBuilder => dataSourceBuilder.EnableParameterLogging());
 
-builder.Services.AddScoped<IRepository<float>, RepositoryFloat>();
-builder.Services.AddScoped<IService<float>, ServiceFloat>();
+builder.Services.AddScoped<IRepository<Review>, RepositoryReviewModel>();
+builder.Services.AddScoped<IService<Review>, ServiceReviewDto>();
 
 builder.Services.AddControllers();
 
