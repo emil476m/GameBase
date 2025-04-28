@@ -18,7 +18,7 @@
       POSTGRES_USER: ${POSTGRES_USER}
       POSTGRES_DB: ${POSTGRES_DB}
     networks:
-      - game_base_network
+      - game_base_network_swarm
 
   featurehub:
     image: featurehub/party-server:latest
@@ -35,6 +35,7 @@
       - featurehub-h2-data:/db
     networks:
       - game_base_network
+      - game_base_network_swarm
         
   gateway:
     image: ghcr.io/emil476m/gamebase-gw:latest
@@ -49,6 +50,7 @@
       - 8080:8080
     networks:
     - game_base_network
+    - game_base_network_swarm
   
   searchengine:
     image: ghcr.io/emil476m/gamebase-se:latest
@@ -69,7 +71,7 @@
         order: start-first
         failure_action: rollback
     networks:
-      - game_base_network
+      - game_base_network_swarm
   
   createservice:
     image: ghcr.io/emil476m/gamebase-cs:latest
@@ -90,7 +92,7 @@
         order: start-first
         failure_action: rollback
     networks:
-      - game_base_network
+      - game_base_network_swarm
   
   reviewhandler:
     image: ghcr.io/emil476m/gamebase-rh:latest
@@ -111,13 +113,14 @@
         order: start-first
         failure_action: rollback
     networks:
-      - game_base_network
+      - game_base_network_swarm
 
 volumes:
   pgdatagamebase:
   featurehub-h2-data:
 
 networks:
-  game_base_network:
-    driver: overlay
-    external: true
+  - game_base_network_swarm:
+      driver: overlay
+  - game_base_network:
+      driver: bridge
