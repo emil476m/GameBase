@@ -21,9 +21,15 @@ public class ServiceSearchDto:IService<SearchDto, GameDto>
         return await _searchRepository.QuerySearch(query);
     }
 
-    public async Task<IEnumerable<GameDto>> getGames()
+    public async Task<IEnumerable<GameDto>> getGames(int page)
     {
-        return await _searchRepository.getGames();
+        if (page <= 0)
+        {
+            return await _searchRepository.getGames();
+        }
+
+        int offset = (page * 10)-10;
+        return await _searchRepository.getGamesPage(offset);
     }
 
     public async Task<GameDto> getGame(Guid gameId)
