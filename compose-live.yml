@@ -29,6 +29,8 @@
     restart: always
     ports:
       - 8080:8080
+    environment:
+      - VPS_IP= ${VPS_IP} 
     networks:
     - game_base_network
   
