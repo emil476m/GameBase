@@ -6,24 +6,24 @@
   </ion-toolbar>
 </ion-header>
 <ion-content>
-  <ion-infinite-scroll>
-    <ion-card>
+  <ion-infinite-scroll (ionInfinite)="getgameList()">
+    <ion-card *ngFor="let game of gamelist" (click)="openDetailedGamePage(game.gameId)">
       <ion-card-content>
         <div style="display: flex; flex-flow: nowrap; flex-direction: row">
-          <ion-img src="https://preview.redd.it/new-game-cover-from-larians-website-v0-m2lmw222h0ka1.png?auto=webp&s=ba904ad42906960a96a70ce1c27ee6d3ff5edead" style="height: 15%; width: 10%"></ion-img>
+          <ion-img src="{{game.gameImgUrl}}" style="height: 15%; width: 10%"></ion-img>
             <ion-grid>
               <ion-row>
                 <ion-col>
-                  <ion-title>game</ion-title>
+                  <ion-title>{{game.gameName}}</ion-title>
                 </ion-col>
               </ion-row>
               <ion-row>
                 <ion-col>
-                  <ion-title style="font-weight: normal; font-size: 12px">Release year: 2019</ion-title>
+                  <ion-title style="font-weight: normal; font-size: 12px">Release year: {{game.gamePublishedYear}}</ion-title>
                 </ion-col>
               </ion-row>
             </ion-grid>
-          <ion-text style="margin: 1%; align-self: center">rating: 10<ion-icon name="game-controller"/></ion-text>
+          <ion-text style="margin: 1%; align-self: center">rating: {{game.game_score}}/10<ion-icon name="game-controller"/></ion-text>
         </div>
       </ion-card-content>
     </ion-card>
