@@ -7,4 +7,6 @@ public class GameDto
     public string GameDescription { get; set; }
     public string? GameImgUrl { get; set; }
     public string GamePublishedYear { get; set; }
+    public float game_score { get; set; }
+
 }

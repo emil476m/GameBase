@@ -37,10 +37,10 @@ public class SearchEngineController : ControllerBase
     }
     
     [HttpGet]
-    [Route("Games")]
-    public async Task<IActionResult> GetGame()
+    [Route("Games/{page}")]
+    public async Task<IActionResult> GetGame([FromRoute] int page)
     {
-        IEnumerable<GameDto> result = await _service.getGames();
+        IEnumerable<GameDto> result = await _service.getGames(page);
 
         return result.Any() ? Ok(result) : NotFound();
     }
