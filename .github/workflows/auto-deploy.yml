@@ -32,15 +32,15 @@ jobs:
           registry: ghcr.io
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
-          
-      # Build docker image (frontend)    
+
+      # Build docker image (frontend)
       - name: Build and Push Docker image (web)
         run: |
-            docker build \
+          docker build \
             -t ghcr.io/emil476m/gamebase-web:version-0 \
-            -f ./Apps/frontend/Dockerfile \
-           .
-         docker push ghcr.io/emil476m/gamebase-web --all-tags
+            -f ./Apps/gateway/Dockerfile \
+            .
+          docker push ghcr.io/emil476m/gamebase-web --all-tags
 
       # Build the Docker image for gateway
       - name: Build and Push Docker image (gateway)
