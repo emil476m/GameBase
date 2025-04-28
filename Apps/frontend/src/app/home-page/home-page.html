@@ -1,0 +1,34 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title mode="ios">
+      Home
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+<ion-content>
+  <ion-infinite-scroll (ionInfinite)="getgameList()">
+    <ion-card *ngFor="let game of gamelist" (click)="openDetailedGamePage(game.gameId)">
+      <ion-card-content>
+        <div style="display: flex; flex-flow: nowrap; flex-direction: row">
+          <ion-img src="{{game.gameImgUrl}}" style="height: 15%; width: 10%"></ion-img>
+            <ion-grid>
+              <ion-row>
+                <ion-col>
+                  <ion-title>{{game.gameName}}</ion-title>
+                </ion-col>
+              </ion-row>
+              <ion-row>
+                <ion-col>
+                  <ion-title style="font-weight: normal; font-size: 12px">Release year: {{game.gamePublishedYear}}</ion-title>
+                </ion-col>
+              </ion-row>
+            </ion-grid>
+          <ion-text style="margin: 1%; align-self: center">rating: {{game.game_score}}/10<ion-icon name="game-controller"/></ion-text>
+        </div>
+      </ion-card-content>
+    </ion-card>
+  </ion-infinite-scroll>
+</ion-content>
+<ion-fab-button style="align-self: end; margin: 0.5%" (click)="openCreateGamePage()">
+  <ion-icon name="add"></ion-icon>
+</ion-fab-button>

@@ -1,0 +1,40 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title mode="ios">
+      Create new game entry
+    </ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="cancle()">
+        Cancel
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+<ion-content>
+  <ion-item>
+    <ion-input labelPlacement="floating" label="Game title:" placeholder="title" [formControl]="gameTitle"></ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-select label="Release year:" labelPlacement="flaoting" placeholder="year" [formControl]="releseYear">
+      <ion-select-option *ngFor="let year of yearlist">{{year}}</ion-select-option>
+    </ion-select>
+  </ion-item>
+  <ion-item>
+    <ion-input labelPlacement="flaoting" label="Image url:" placeholder="url" [formControl]="imgUrl"></ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-textarea label="Game description:" labelPlacement="floating" placeholder="description ..." [formControl]="gameDesc"></ion-textarea>
+  </ion-item>
+  <div [hidden]="this.AIFeat.AiDescriptor === false">
+    <ion-item>
+      <ion-input placeholder="Ai query" labelPlacement="floating" label="Ask ai: " [formControl]="AskAi"></ion-input>
+      <ion-button (click)="AidescCall()">Ask</ion-button>
+    </ion-item>
+    <ion-item>
+      <ion-textarea label="AI response:">{{AIresp.response}}</ion-textarea>
+    </ion-item>
+  </div>
+</ion-content>
+<ion-button (click)="createGameEntry()" [disabled]="game.invalid">
+  Create game entry
+</ion-button>

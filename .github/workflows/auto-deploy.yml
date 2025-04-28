@@ -33,15 +33,6 @@ jobs:
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
 
-      # Build the Docker image for frontend
-     # - name: Build and Push Docker image (web)
-      #  run: |
-       #   docker build \
-      #      -t ghcr.io/emil476m/gamebase-web:staging \
-      #      -t ghcr.io/emil476m/gamebase-web:${{ needs.integration.outputs.semver }} \
-       #     -f ./Apps/frontend/Dockerfile \
-     #       .
-      #    docker push ghcr.io/emil476m/gamebase-web --all-tags
 
       # Build the Docker image for gateway
       - name: Build and Push Docker image (gateway)
@@ -79,6 +70,14 @@ jobs:
             .
           docker push ghcr.io/emil476m/gamebase-se --all-tags
 
+      # Build docker image (frontend)
+      - name: Build and Push Docker image (web)
+        run: |
+          docker build \
+            -t ghcr.io/emil476m/gamebase-web:version-0 \
+            -f ./Apps/gateway/Dockerfile \
+            .
+          docker push ghcr.io/emil476m/gamebase-web --all-tags
 
       # Build the Docker image for reviewHandler
       - name: Build and Push Docker image (reviewHandler)

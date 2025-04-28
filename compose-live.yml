@@ -30,7 +30,7 @@
     ports:
       - 8080:8080
     environment:
-      - VPS_IP= ${VPS_IP} 
+      - VPS_IP= ${VPS_IP}
     networks:
     - game_base_network
   
@@ -92,6 +92,13 @@
       - FEATUREHUB_TOKEN=${FEATUREHUB_TOKEN}
     networks:
       - game_base_network
+  gamebasefrontend:
+    image: ghcr.io/emil476m/gamebase-web:${NEW_VERSION}
+    ports:
+      - 4200:4200
+    networks:
+      - game_base_network
+
 volumes:
   pgdatagamebase:
   featurehub-h2-data:

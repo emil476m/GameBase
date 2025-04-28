@@ -1,0 +1,19 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title mode="ios">
+      Search
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+<ion-searchbar placeholder="search for games here" (ionChange)="search($event.target.value!)"></ion-searchbar>
+<ion-content>
+  <ion-infinite-scroll>
+ <ion-card *ngFor="let game of gamelist" (click)="openDetailedGamePage(game.gameId)">
+   <ion-card-content>
+     <ion-title>
+       {{ game.gameName }}<!-- > make this only be the game title </!-->
+     </ion-title>
+   </ion-card-content>
+ </ion-card>
+  </ion-infinite-scroll>
+</ion-content>
