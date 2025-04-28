@@ -47,7 +47,7 @@ jobs:
       - name: Build and Push Docker image (gateway)
         run: |
           docker build \
-            -t ghcr.io/emil476m/gamebase-gw:${{ steps.semver-app.outputs.version }} ghcr.io/emil476m/gamebase-gw:latest \
+            -t ghcr.io/emil476m/gamebase-gw:${{ steps.semver-app.outputs.version }} \
             -f ./Apps/gateway/Dockerfile \
             .
           docker push ghcr.io/emil476m/gamebase-gw --all-tags
@@ -56,7 +56,7 @@ jobs:
       - name: Build and Push Docker image (CreateService)
         run: |
           docker build \
-            -t ghcr.io/emil476m/gamebase-cs:${{ steps.semver-app.outputs.version }} ghcr.io/emil476m/gamebase-cs:latest \
+            -t ghcr.io/emil476m/gamebase-cs:${{ steps.semver-app.outputs.version }} \
             -f ./Apps/CreateService/Dockerfile \
             .
           docker push ghcr.io/emil476m/gamebase-cs --all-tags
@@ -65,7 +65,7 @@ jobs:
       - name: Build and Push Docker image (SearchEngine)
         run: |
           docker build \
-            -t ghcr.io/emil476m/gamebase-se:${{ steps.semver-app.outputs.version }} ghcr.io/emil476m/gamebase-se:latest \
+            -t ghcr.io/emil476m/gamebase-se:${{ steps.semver-app.outputs.version }} \
             -f ./Apps/SearchEngine/Dockerfile \
             .
           docker push ghcr.io/emil476m/gamebase-se --all-tags
@@ -75,7 +75,7 @@ jobs:
       - name: Build and Push Docker image (reviewHandler)
         run: |
           docker build \
-            -t ghcr.io/emil476m/gamebase-rh:${{ steps.semver-app.outputs.version }} ghcr.io/emil476m/gamebase-rh:latest \
+            -t ghcr.io/emil476m/gamebase-rh:${{ steps.semver-app.outputs.version }} \
             -f ./Apps/reviewHandler/Dockerfile \
             .
           docker push ghcr.io/emil476m/gamebase-rh --all-tags
@@ -86,6 +86,20 @@ jobs:
           
           docker compose -f docker-compose.yml -f compose-live.yml build
           docker compose -f docker-compose.yml -f compose-live.yml push
+          
+      - name: make latest version
+        run: |
+          docker tag ghcr.io/emil476m/gamebase-gw:${{ steps.semver-app.outputs.version }} ghcr.io/emil476m/gamebase-gw:latest \ 
+          docker push ghcr.io/emil476m/gamebase-gw:latest 
+          
+          docker tag ghcr.io/emil476m/gamebase-cs:${{ steps.semver-app.outputs.version }} ghcr.io/emil476m/gamebase-cs:latest \
+          docker push ghcr.io/emil476m/gamebase-cs:latest
+          
+          docker tag ghcr.io/emil476m/gamebase-se:${{ steps.semver-app.outputs.version }} ghcr.io/emil476m/gamebase-se:latest \
+          docker push ghcr.io/emil476m/gamebase-se:latest
+          
+          docker tag ghcr.io/emil476m/gamebase-rh:${{ steps.semver-app.outputs.version }} ghcr.io/emil476m/gamebase-rh:latest \
+          docker push ghcr.io/emil476m/gamebase-rh:latest
       
       - name: deliver to server
         uses: appleboy/scp-action@v0.1.7
