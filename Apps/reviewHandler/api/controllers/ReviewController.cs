@@ -1,6 +1,7 @@
 ﻿
 
 using api.dtos;
+using infrastructur.Models.Dto;
 using Microsoft.AspNetCore.Mvc;
 using Service.Interfaces;
 
@@ -10,9 +11,9 @@ namespace api.controllers;
 [Microsoft.AspNetCore.Mvc.Route("[controller]")]
 public class ReviewController : ControllerBase
 {
-    private readonly IService<float> _service;
+    private readonly IService<Review> _service;
 
-    public ReviewController(IService<float> service)
+    public ReviewController(IService<Review> service)
     {
         _service = service;
     }
@@ -35,6 +36,6 @@ public class ReviewController : ControllerBase
 
         var newScore = await _service.AddScore(dto.game_id, dto.score);
 
-        return newScore > 0 ? Ok(newScore) : NoContent();
+        return newScore.GameId != Guid.Empty ? Ok(newScore) : NoContent();
     }
 }
