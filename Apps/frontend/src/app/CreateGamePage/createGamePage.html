@@ -25,6 +25,15 @@
   <ion-item>
     <ion-textarea label="Game description:" labelPlacement="floating" placeholder="description ..." [formControl]="gameDesc"></ion-textarea>
   </ion-item>
+  <div [hidden]="this.AIDesc.AiDescriptor == false">
+    <ion-item>
+      <ion-input placeholder="Ai query" labelPlacement="floating" label="Ask ai: " [formControl]="AskAi"></ion-input>
+      <ion-button (click)="AidescCall()">Ask</ion-button>
+    </ion-item>
+    <ion-item>
+      <ion-textarea label="AI response:">{{AIresp.response}}</ion-textarea>
+    </ion-item>
+  </div>
 </ion-content>
 <ion-button (click)="createGameEntry()" [disabled]="game.invalid">
   Create game entry

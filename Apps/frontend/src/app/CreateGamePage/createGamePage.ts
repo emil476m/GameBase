@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import {ModalController} from "@ionic/angular";
 import {FormControl, FormGroup, Validators} from "@angular/forms";
+import {EnabledAIFeature} from "../Models/EnabledAIFeature";
+import {AIResponsDto} from "../Models/AiResponsDto";
 
 @Component({
   selector: 'app-create-game-page',
@@ -9,6 +11,8 @@ import {FormControl, FormGroup, Validators} from "@angular/forms";
   standalone: false,
 })
 export class CreateGamePage {
+
+  AIDesc : EnabledAIFeature = new EnabledAIFeature();
 
   gameTitle = new FormControl('',[ Validators.required, Validators.minLength(3), Validators.maxLength(250)]);
   releseYear = new FormControl('',[ Validators.required]);
@@ -23,6 +27,8 @@ export class CreateGamePage {
   })
 
   yearlist : Array<string> = [];
+  AskAi = new FormControl("", Validators.required);
+  AIresp = new AIResponsDto();
   constructor(private mc: ModalController) {
     this.createyearlist()
   }
@@ -49,5 +55,9 @@ export class CreateGamePage {
   cancle()
   {
     this.mc.dismiss();
+  }
+
+  AidescCall() {
+
   }
 }
