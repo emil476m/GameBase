@@ -34,7 +34,8 @@ export class HomePage {
     }
         try {
           this.gamelist = [];
-          const call = this.http.get<GameDto[]>(environment.baseURL + "Games/" + 1);
+          //TODO fix pagination later
+          const call = this.http.get<GameDto[]>(environment.baseURL + "Games/" + 0);
           call.subscribe((resData: GameDto[]) => {
             if(page = 1)
             {
