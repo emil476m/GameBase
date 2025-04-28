@@ -115,4 +115,4 @@ jobs:
           envs: ASPNETCORE_ENVIRONMENT,PGCONN,POSTGRES_DB,POSTGRES_PASSWORD,POSTGRES_USER,FEATUREHUB_TOKEN,GOOGLE_AI_API_KEY
           script: |
             cd hh
-            docker stack deploy --compose-file compose-live.yml gamebasestack
+            docker stack deploy --compose-file compose-live.yml gamebasestack -d
