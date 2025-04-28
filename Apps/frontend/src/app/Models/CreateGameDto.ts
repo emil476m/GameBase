@@ -1,9 +1,9 @@
 export interface CreateGameDto {
-  Name : string;
+  name : string;
 
-  Description : string;
+  description : string;
 
-  ImgUrl : string;
+  imgUrl : string;
 
-  PublishedYear : string;
+  publishedYear : string;
 }

@@ -3,6 +3,13 @@ import {ModalController} from "@ionic/angular";
 import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {EnabledAIFeature} from "../Models/EnabledAIFeature";
 import {AIResponsDto} from "../Models/AiResponsDto";
+import {SearchDto} from "../Models/SearchDto";
+import {environment} from "../../environments/environment";
+import {HttpClient} from "@angular/common/http";
+import {Serializer} from "@angular/compiler";
+import {AiQuery} from "../Models/AiQuery";
+import {CreateGameDto} from "../Models/CreateGameDto";
+import {firstValueFrom} from "rxjs";
 
 @Component({
   selector: 'app-create-game-page',
@@ -12,7 +19,7 @@ import {AIResponsDto} from "../Models/AiResponsDto";
 })
 export class CreateGamePage {
 
-  AIDesc : EnabledAIFeature = new EnabledAIFeature();
+  AIFeat : EnabledAIFeature = new EnabledAIFeature();
 
   gameTitle = new FormControl('',[ Validators.required, Validators.minLength(3), Validators.maxLength(250)]);
   releseYear = new FormControl('',[ Validators.required]);
@@ -29,8 +36,9 @@ export class CreateGamePage {
   yearlist : Array<string> = [];
   AskAi = new FormControl("", Validators.required);
   AIresp = new AIResponsDto();
-  constructor(private mc: ModalController) {
+  constructor(private mc: ModalController, private http: HttpClient) {
     this.createyearlist()
+    this.checkAiFunction()
   }
 
 
@@ -47,9 +55,21 @@ export class CreateGamePage {
     }
   }
 
-  createGameEntry()
+  async createGameEntry()
   {
+    const game : CreateGameDto = {
+      name : this.gameTitle.value!,
+      description : this.gameDesc.value!,
+      imgUrl : this.imgUrl.value!,
+      publishedYear : this.releseYear.value!,
+    }
 
+    const call = this.http.post(environment.baseURL+ 'CreateGame',game);
+    const result = await firstValueFrom(call);
+    if(result != undefined)
+    {
+      this.mc.dismiss(result);
+    }
   }
 
   cancle()
@@ -57,7 +77,20 @@ export class CreateGamePage {
     this.mc.dismiss();
   }
 
-  AidescCall() {
+  checkAiFunction()
+  {
+    const call = this.http.get<EnabledAIFeature>(environment.baseURL + "AiFeature");
+    call.subscribe((resData: EnabledAIFeature) => {
+      this.AIFeat.AiDescriptor = resData.AiDescriptor;
+    });
+  }
 
+  AidescCall() {
+    const query: AiQuery = new AiQuery();
+    query.query == this.AskAi.getRawValue();
+    const call = this.http.post<AIResponsDto>(environment.baseURL + "CreateAIDescription",query,);
+    call.subscribe((resData: AIResponsDto) => {
+      this.AIresp.response = resData.response;
+    });
   }
 }
