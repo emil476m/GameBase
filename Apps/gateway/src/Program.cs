@@ -28,7 +28,7 @@ if (builder.Environment.IsDevelopment())
         });
     });
 }
-else if (builder.Environment.IsProduction())
+else
 {
     builder.Services.AddCors(options =>
     {
