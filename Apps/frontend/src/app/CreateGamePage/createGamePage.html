@@ -31,7 +31,12 @@
       <ion-button (click)="AidescCall()">Ask</ion-button>
     </ion-item>
     <ion-item>
-      <ion-textarea label="AI response:">{{AIresp.response}}</ion-textarea>
+      <ion-item>
+        <ion-title style="font-weight: normal; font-size: 12px; overflow: auto;">AI response:</ion-title>
+      </ion-item>
+      <ion-item>
+        <ion-text style="overflow: auto">{{AIresp.response}}</ion-text>
+      </ion-item>
     </ion-item>
   </div>
 </ion-content>
