@@ -3,6 +3,7 @@ on:
   push:
     branches:
       - main
+      - cors/fix/wide_spred_cors_violation
 
 jobs:
   delivery:
